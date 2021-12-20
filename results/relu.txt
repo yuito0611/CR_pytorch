@@ -1,0 +1,141 @@
+条件：RNN1層、Dropout,relu,set5
+
+
+Cross Validation: k=[1/10]
+epoch:[ 10/100] | 3m 5s - loss: 1.837813,  accuracy: 0.7034901,  valid_acc: 0.6569293
+epoch:[ 20/100] | 3m 5s - loss: 2.098768,  accuracy: 0.687719,  valid_acc: 0.6447011
+epoch:[ 30/100] | 3m 4s - loss: 2.330617,  accuracy: 0.6654498,  valid_acc: 0.5855978
+epoch:[ 40/100] | 3m 2s - loss: 2.648346,  accuracy: 0.6330315,  valid_acc: 0.5855978
+epoch:[ 50/100] | 3m 2s - loss: 2.719202,  accuracy: 0.6122225,  valid_acc: 0.5658967
+epoch:[ 60/100] | 3m 5s - loss: 3.098128,  accuracy: 0.5854264,  valid_acc: 0.5380435
+epoch:[ 70/100] | 3m 4s - loss: 3.274739,  accuracy: 0.5625,  valid_acc: 0.5258152
+epoch:[ 80/100] | 3m 5s - loss: 5.378328,  accuracy: 0.5295707,  valid_acc: 0.515625
+epoch:[ 90/100] | 3m 4s - loss: 3.895762,  accuracy: 0.5048189,  valid_acc: 0.4993207
+epoch:[100/100] | 2m 59s - loss: 4.881571,  accuracy: 0.4767085,  valid_acc: 0.4755435
+final_loss: 4.881571,   final_accuracy:0.4755435
+
+
+Cross Validation: k=[2/10]
+epoch:[ 10/100] | 2m 42s - loss: 2.252137,  accuracy: 0.6452979,  valid_acc: 0.5971467
+epoch:[ 20/100] | 2m 58s - loss: 2.507342,  accuracy: 0.6343458,  valid_acc: 0.5652174
+epoch:[ 30/100] | 3m 3s - loss: 2.684255,  accuracy: 0.6185018,  valid_acc: 0.5353261
+epoch:[ 40/100] | 3m 1s - loss: 2.834616,  accuracy: 0.599153,  valid_acc: 0.5339674
+epoch:[ 50/100] | 3m 4s - loss: 2.924069,  accuracy: 0.5776139,  valid_acc: 0.4993207
+epoch:[ 60/100] | 3m 3s - loss: 3.123665,  accuracy: 0.5547605,  valid_acc: 0.5027174
+epoch:[ 70/100] | 3m 2s - loss: 3.262158,  accuracy: 0.5319801,  valid_acc: 0.4932065
+epoch:[ 80/100] | 3m 3s - loss: 3.434494,  accuracy: 0.5012412,  valid_acc: 0.4721467
+epoch:[ 90/100] | 3m 3s - loss: 3.538821,  accuracy: 0.4764165,  valid_acc: 0.4578804
+epoch:[100/100] | 3m 2s - loss: 3.820113,  accuracy: 0.4407856,  valid_acc: 0.4538043
+final_loss: 3.820113,   final_accuracy:0.4538043
+
+
+
+Cross Validation: k=[3/10]
+epoch:[ 10/100] | 3m 2s - loss: 2.225718,  accuracy: 0.6485105,  valid_acc: 0.59375
+epoch:[ 20/100] | 2m 55s - loss: 2.51916,  accuracy: 0.6342728,  valid_acc: 0.5808424
+epoch:[ 30/100] | 2m 52s - loss: 2.655921,  accuracy: 0.6202541,  valid_acc: 0.5502717
+epoch:[ 40/100] | 2m 51s - loss: 2.798139,  accuracy: 0.6052132,  valid_acc: 0.5326087
+epoch:[ 50/100] | 2m 52s - loss: 2.961691,  accuracy: 0.5760076,  valid_acc: 0.5380435
+epoch:[ 60/100] | 2m 52s - loss: 3.123706,  accuracy: 0.5540304,  valid_acc: 0.5006793
+epoch:[ 70/100] | 2m 51s - loss: 3.230795,  accuracy: 0.5302278,  valid_acc: 0.4925272
+epoch:[ 80/100] | 2m 53s - loss: 3.359335,  accuracy: 0.510295,  valid_acc: 0.4816576
+epoch:[ 90/100] | 2m 53s - loss: 3.593512,  accuracy: 0.4834988,  valid_acc: 0.4639946
+epoch:[100/100] | 2m 51s - loss: 3.746836,  accuracy: 0.4472839,  valid_acc: 0.4599185
+final_loss: 3.746836,   final_accuracy:0.4599185
+
+
+Cross Validation: k=[4/10]
+epoch:[ 10/100] | 2m 53s - loss: 2.107077,  accuracy: 0.671948,  valid_acc: 0.5278533
+epoch:[ 20/100] | 2m 52s - loss: 2.292478,  accuracy: 0.6650117,  valid_acc: 0.5101902
+epoch:[ 30/100] | 2m 53s - loss: 2.441742,  accuracy: 0.6546437,  valid_acc: 0.4877717
+epoch:[ 40/100] | 2m 52s - loss: 2.630207,  accuracy: 0.6306221,  valid_acc: 0.4544837
+epoch:[ 50/100] | 2m 52s - loss: 2.666091,  accuracy: 0.6201081,  valid_acc: 0.453125
+epoch:[ 60/100] | 2m 53s - loss: 2.818973,  accuracy: 0.5982769,  valid_acc: 0.435462
+epoch:[ 70/100] | 2m 53s - loss: 3.028227,  accuracy: 0.5711157,  valid_acc: 0.4442935
+epoch:[ 80/100] | 2m 53s - loss: 3.146378,  accuracy: 0.5451957,  valid_acc: 0.4144022
+epoch:[ 90/100] | 2m 52s - loss: 3.185278,  accuracy: 0.5274533,  valid_acc: 0.4110054
+epoch:[100/100] | 2m 53s - loss: 3.429573,  accuracy: 0.4951811,  valid_acc: 0.3967391
+final_loss: 3.429573,   final_accuracy:0.3967391
+
+                                                                                                                             [43/1901]
+Cross Validation: k=[5/10]
+epoch:[ 10/100] | 2m 53s - loss: 2.173046,  accuracy: 0.6543516,  valid_acc: 0.5380435
+epoch:[ 20/100] | 2m 53s - loss: 2.375218,  accuracy: 0.6455169,  valid_acc: 0.5013587
+epoch:[ 30/100] | 2m 53s - loss: 2.543072,  accuracy: 0.6431075,  valid_acc: 0.4986413
+epoch:[ 40/100] | 2m 54s - loss: 2.632041,  accuracy: 0.6306951,  valid_acc: 0.4639946
+epoch:[ 50/100] | 2m 53s - loss: 2.79432,  accuracy: 0.6064544,  valid_acc: 0.4558424
+epoch:[ 60/100] | 2m 53s - loss: 2.791918,  accuracy: 0.5953563,  valid_acc: 0.4422554
+epoch:[ 70/100] | 2m 53s - loss: 3.031308,  accuracy: 0.5668808,  valid_acc: 0.4273098
+epoch:[ 80/100] | 2m 54s - loss: 3.124413,  accuracy: 0.5511098,  valid_acc: 0.4205163
+epoch:[ 90/100] | 2m 55s - loss: 3.271535,  accuracy: 0.5271612,  valid_acc: 0.4048913
+epoch:[100/100] | 2m 53s - loss: 3.378127,  accuracy: 0.5063522,  valid_acc: 0.390625
+final_loss: 3.378127,   final_accuracy:0.390625
+
+
+Cross Validation: k=[6/10]
+epoch:[ 10/100] | 2m 53s - loss: 2.204993,  accuracy: 0.6587325,  valid_acc: 0.4769022
+epoch:[ 20/100] | 2m 55s - loss: 2.41047,  accuracy: 0.6479264,  valid_acc: 0.4341033
+epoch:[ 30/100] | 2m 54s - loss: 2.577871,  accuracy: 0.6311332,  valid_acc: 0.4205163
+epoch:[ 40/100] | 2m 54s - loss: 2.688682,  accuracy: 0.6236857,  valid_acc: 0.3980978
+epoch:[ 50/100] | 2m 53s - loss: 2.817879,  accuracy: 0.6008324,  valid_acc: 0.3858696
+epoch:[ 60/100] | 2m 53s - loss: 3.000569,  accuracy: 0.5762266,  valid_acc: 0.3682065
+epoch:[ 70/100] | 2m 54s - loss: 3.253251,  accuracy: 0.5621349,  valid_acc: 0.3607337
+epoch:[ 80/100] | 2m 54s - loss: 3.184653,  accuracy: 0.5435894,  valid_acc: 0.3559783
+epoch:[ 90/100] | 2m 53s - loss: 3.908862,  accuracy: 0.5121203,  valid_acc: 0.3491848
+epoch:[100/100] | 2m 53s - loss: 3.539255,  accuracy: 0.4726928,  valid_acc: 0.3355978
+final_loss: 3.539255,   final_accuracy:0.3355978
+
+
+Cross Validation: k=[7/10]
+epoch:[ 10/100] | 2m 53s - loss: 2.601689,  accuracy: 0.5725759,  valid_acc: 0.6657609
+epoch:[ 20/100] | 2m 53s - loss: 3.16444,  accuracy: 0.5191297,  valid_acc: 0.6243207
+epoch:[ 30/100] | 2m 52s - loss: 3.454206,  accuracy: 0.4840829,  valid_acc: 0.5822011
+epoch:[ 40/100] | 2m 54s - loss: 3.757171,  accuracy: 0.4404206,  valid_acc: 0.5360054
+epoch:[ 50/100] | 2m 52s - loss: 3.997309,  accuracy: 0.4136974,  valid_acc: 0.5251359
+epoch:[ 60/100] | 2m 53s - loss: 4.149138,  accuracy: 0.3930345,  valid_acc: 0.5095109
+epoch:[ 70/100] | 2m 53s - loss: 4.335958,  accuracy: 0.3790888,  valid_acc: 0.4945652
+epoch:[ 80/100] | 2m 55s - loss: 4.522913,  accuracy: 0.3623686,  valid_acc: 0.4891304
+epoch:[ 90/100] | 2m 55s - loss: 4.678282,  accuracy: 0.3376168,  valid_acc: 0.4809783
+epoch:[100/100] | 2m 55s - loss: 4.769876,  accuracy: 0.3223569,  valid_acc: 0.453125
+final_loss: 4.769876,   final_accuracy:0.453125
+
+Cross Validation: k=[8/10]
+epoch:[ 10/100] | 2m 55s - loss: 2.312498,  accuracy: 0.645736,  valid_acc: 0.7370924
+epoch:[ 20/100] | 2m 50s - loss: 2.518967,  accuracy: 0.635514,  valid_acc: 0.7092391
+epoch:[ 30/100] | 2m 48s - loss: 2.672876,  accuracy: 0.6116384,  valid_acc: 0.6881793
+epoch:[ 40/100] | 2m 47s - loss: 2.930524,  accuracy: 0.593823,  valid_acc: 0.6705163
+epoch:[ 50/100] | 2m 50s - loss: 2.980681,  accuracy: 0.5757155,  valid_acc: 0.6610054
+epoch:[ 60/100] | 2m 48s - loss: 3.21786,  accuracy: 0.5413989,  valid_acc: 0.638587
+epoch:[ 70/100] | 2m 48s - loss: 3.427032,  accuracy: 0.510587,  valid_acc: 0.6052989
+epoch:[ 80/100] | 2m 48s - loss: 3.590044,  accuracy: 0.4873686,  valid_acc: 0.5794837
+epoch:[ 90/100] | 2m 47s - loss: 3.797912,  accuracy: 0.4489632,  valid_acc: 0.564538
+epoch:[100/100] | 2m 48s - loss: 4.03789,  accuracy: 0.4160339,  valid_acc: 0.5455163
+final_loss: 4.03789,   final_accuracy:0.5455163
+
+
+Cross Validation: k=[9/10]
+epoch:[ 10/100] | 2m 47s - loss: 2.559074,  accuracy: 0.5844042,  valid_acc: 0.703125
+epoch:[ 20/100] | 2m 48s - loss: 2.976926,  accuracy: 0.5550526,  valid_acc: 0.654212
+epoch:[ 30/100] | 2m 48s - loss: 3.225366,  accuracy: 0.525847,  valid_acc: 0.6243207
+epoch:[ 40/100] | 2m 47s - loss: 3.458958,  accuracy: 0.494816,  valid_acc: 0.560462
+epoch:[ 50/100] | 2m 48s - loss: 3.628671,  accuracy: 0.4673627,  valid_acc: 0.5475543
+epoch:[ 60/100] | 2m 48s - loss: 3.778178,  accuracy: 0.4431221,  valid_acc: 0.5339674
+epoch:[ 70/100] | 2m 49s - loss: 4.001526,  accuracy: 0.4139895,  valid_acc: 0.5169837
+epoch:[ 80/100] | 2m 48s - loss: 4.201674,  accuracy: 0.3866092,  valid_acc: 0.5088315
+epoch:[ 90/100] | 2m 48s - loss: 4.391484,  accuracy: 0.3653621,  valid_acc: 0.5006793
+epoch:[100/100] | 2m 48s - loss: 4.431867,  accuracy: 0.3496641,  valid_acc: 0.5040761
+final_loss: 4.431867,   final_accuracy:0.5040761
+
+
+Cross Validation: k=[10/10]
+epoch:[ 10/100] | 2m 48s - loss: 2.41503,  accuracy: 0.6182097,  valid_acc: 0.6908967
+epoch:[ 20/100] | 2m 49s - loss: 2.760414,  accuracy: 0.5920707,  valid_acc: 0.6610054
+epoch:[ 30/100] | 2m 49s - loss: 3.003454,  accuracy: 0.5689982,  valid_acc: 0.6195652
+epoch:[ 40/100] | 2m 48s - loss: 3.161428,  accuracy: 0.5472401,  valid_acc: 0.6066576
+epoch:[ 50/100] | 2m 48s - loss: 3.394471,  accuracy: 0.5332214,  valid_acc: 0.5869565
+epoch:[ 60/100] | 2m 47s - loss: 3.503151,  accuracy: 0.5124854,  valid_acc: 0.5692935
+epoch:[ 70/100] | 2m 49s - loss: 3.585012,  accuracy: 0.4713785,  valid_acc: 0.5543478
+epoch:[ 80/100] | 2m 48s - loss: 3.766616,  accuracy: 0.4492553,  valid_acc: 0.5271739
+epoch:[ 90/100] | 2m 49s - loss: 3.980218,  accuracy: 0.4109229,  valid_acc: 0.5149457
+epoch:[100/100] | 2m 47s - loss: 4.225347,  accuracy: 0.3785047,  valid_acc: 0.4904891
+final_loss: 4.225347,   final_accuracy:0.4904891
