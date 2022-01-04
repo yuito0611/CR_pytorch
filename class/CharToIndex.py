@@ -38,8 +38,8 @@ class CharToIndex():
 
     #日本語で取得 (例: b'\xe7\x9f\xa5'->'知'
     def get_decoded_char(self,index):
-        if isinstance(index, int)==False:
-            print("\033[31m"+"ERROR: index must be int"+" \033[0m")
+        if isinstance(index, int)==False and (id(type(index))!=id(np.int64)):
+            print("\033[31m"+"ERROR: index must be int"+" \033[0m"+f"  ::index type was {type(index)}")
             return None
 
         try:
@@ -49,7 +49,7 @@ class CharToIndex():
             return '<UNK>'
 
 
-    #文字から対応するインデックスを取得
+    #文字から対応するインデックスを取得(半角に統一)
     def get_index(self,char):
         if isinstance(char,str):
             char = mojimoji.zen_to_han(char).encode()

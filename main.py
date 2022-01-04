@@ -1,4 +1,3 @@
-
 import torch
 import numpy as np
 import torch.nn as nn
@@ -9,11 +8,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pprint
 
+
 from CharToIndex import CharToIndex
-from MyDatasets import BaseDataset_set3 as MyDataset
+from MyDatasets import CenterCharDataset_set3 as MyDataset
 from MyDatasets import Cross_Validation
 from MyCustomLayer import TenHotEncodeLayer
-
 
 import time
 import math
@@ -88,9 +87,6 @@ def eval(model,valid_dataloader,is_show_ans_pred=False):
     return accuracy/len(valid_dataloader)
 
 
-
-
-
 #hot encode用
 class Proofreader(nn.Module):
     def __init__(self, input_size, hidden_dim, output_size,n_layers):
@@ -102,13 +98,13 @@ class Proofreader(nn.Module):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
         self.encoder = TenHotEncodeLayer(output_size)
-        self.rnn = nn.RNN(output_size, self.hidden_dim, batch_first=True)
-        self.fc = nn.Linear(self.hidden_dim, output_size)
+        self.rnn = nn.RNN(output_size, self.hidden_dim, batch_first=True,bidirectional=True)
+        self.fc = nn.Linear(self.hidden_dim*2, output_size)
         self.dropout = torch.nn.Dropout(p=0.5)
         self.to(self.device)
 
     def init_hidden(self, batch_size):
-        hidden = torch.zeros(self.n_layers, batch_size, self.hidden_dim)
+        hidden = torch.zeros(self.n_layers*2, batch_size, self.hidden_dim)
         return hidden
 
     def forward(self, x):
@@ -116,7 +112,7 @@ class Proofreader(nn.Module):
         hidden = self.init_hidden(batch_size).to(self.device)
         x=self.encoder(x)
         out, hidden = self.rnn(x.float(), hidden)
-        out = out[:,-1,:]
+        out = out[:,1,:]
         out = self.dropout(out)
         out = self.fc(out)
 
@@ -149,11 +145,16 @@ correct_char=torch.zeros(len(tokens),dtype=torch.int)
 cross_validation = Cross_Validation(tegaki_dataset)
 k_num = cross_validation.k_num #デフォルトは10
 
+text_file = open("output.txt","wt") #結果の保存
+
+
 ##学習
 for i in range(k_num):
     train_dataset,valid_dataset = cross_validation.get_datasets(k_idx=i)
 
     print(f'Cross Validation: k=[{i+1}/{k_num}]')
+    text_file.write(f'Cross Validation: k=[{i+1}/{k_num}]')
+
     train_dataloader=DataLoader(train_dataset,batch_size=BATCH_SIZE,shuffle=True,drop_last=True) #訓練データのみシャッフル
     valid_dataloader=DataLoader(valid_dataset,batch_size=BATCH_SIZE,shuffle=False,drop_last=True)
     model = Proofreader(VOCAB_SIZE, hidden_dim=HIDDEN_SIZE, output_size=VOCAB_SIZE, n_layers=1)
@@ -165,27 +166,44 @@ for i in range(k_num):
     start = time.time() #開始時間の設定
 
     for epoch in range(1,epochs+1):
+        #進捗表示
+        i = (epoch-1)%10
+        pro_bar = ('=' * i) + (' ' * (10 - i))
+        print('\r[{0}] {1}%'.format(pro_bar, i / 10 * 100.), end='')
+
+
         loss,acc = train(model,train_dataloader,learning_rate=0.01)
 
         valid_acc = eval(model,valid_dataloader)
         loss_record.append(loss)
         acc_record.append(valid_acc)
 
+
         if epoch%10==0:
-            print(f'epoch:[{epoch:3}/{epochs}] | {timeSince(start)} - loss: {loss:.7},  accuracy: {acc:.7},  valid_acc: {valid_acc:.7}')
+            print(f'\repoch:[{epoch:3}/{epochs}] | {timeSince(start)} - loss: {loss:.7},  accuracy: {acc:.7},  valid_acc: {valid_acc:.7}')
+            text_file.write(f'\repoch:[{epoch:3}/{epochs}] | {timeSince(start)} - loss: {loss:.7},  accuracy: {acc:.7},  valid_acc: {valid_acc:.7}')
             start = time.time() #開始時間の設定
-        # print(f'epoch:[{epoch:3}/{epochs}] | {timeSince(start)} - loss: {loss:.7},  accuracy: {acc:.7},  valid_acc: {valid_acc:.7}')
-        # start = time.time() #開始時間の設定
-    # acc,correct_char=get_correct_char(model,valid_dataloader,correct_char)
+
+    acc,correct_char=get_correct_char(model,valid_dataloader,correct_char)
 
 
     print(f'final_loss: {loss_record[-1]:.7},   final_accuracy:{acc_record[-1]:.7}\n\n')
+    text_file.write(f'\nfinal_loss: {loss_record[-1]:.7},   final_accuracy:{acc_record[-1]:.7}\n\n')
+
     final_accuracies.append(acc_record[-1])
     final_losses.append(loss_record[-1])
 
-print(f'losses: {final_losses}')
-print(f'accuracies: {final_accuracies}')
+print(f'*** accuracies: {final_accuracies}')
+print(f'*** losses: {final_losses}')
 
-print(f'*** accu average{np.mean(final_accuracies)}')
-print(f'*** loss average{np.mean(final_losses)}')
+print(f'*** accu average: {np.mean(final_accuracies)}')
+print(f'*** loss average: {np.mean(final_losses)}')
+
+text_file.write(f'\n*** accuracies: {final_accuracies}')
+text_file.write(f'\n*** losses: {final_losses}')
+text_file.write(f'\n*** accu average: {np.mean(final_accuracies)}')
+text_file.write(f'\n*** loss average: {np.mean(final_losses)}')
+
+text_file.close()
+
 
