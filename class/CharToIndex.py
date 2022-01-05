@@ -1,5 +1,6 @@
 import numpy as np
-import mojimoji 
+import mojimoji
+import torch
 
 class CharToIndex():
     def __init__(self,chars_file_path):
@@ -38,7 +39,7 @@ class CharToIndex():
 
     #日本語で取得 (例: b'\xe7\x9f\xa5'->'知'
     def get_decoded_char(self,index):
-        if isinstance(index, int)==False and (id(type(index))!=id(np.int64)):
+        if isinstance(index, int)==False and (id(type(index))!=id(np.int64)) and (id(type(index))!=id(torch.Tensor)):
             print("\033[31m"+"ERROR: index must be int"+" \033[0m"+f"  ::index type was {type(index)}")
             return None
 

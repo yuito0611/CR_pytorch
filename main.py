@@ -1,3 +1,4 @@
+
 import torch
 import numpy as np
 import torch.nn as nn
@@ -8,9 +9,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pprint
 
-
 from CharToIndex import CharToIndex
-from MyDatasets import CenterCharDataset_set3 as MyDataset
+from MyDatasets import BaseDataset_set3 as MyDataset
 from MyDatasets import Cross_Validation
 from MyCustomLayer import TenHotEncodeLayer
 
@@ -112,7 +112,7 @@ class Proofreader(nn.Module):
         hidden = self.init_hidden(batch_size).to(self.device)
         x=self.encoder(x)
         out, hidden = self.rnn(x.float(), hidden)
-        out = out[:,1,:]
+        out = out[:,-1,:]
         out = self.dropout(out)
         out = self.fc(out)
 
@@ -144,6 +144,7 @@ correct_char=torch.zeros(len(tokens),dtype=torch.int)
 
 cross_validation = Cross_Validation(tegaki_dataset)
 k_num = cross_validation.k_num #デフォルトは10
+# k_num = 1
 
 text_file = open("output.txt","wt") #結果の保存
 

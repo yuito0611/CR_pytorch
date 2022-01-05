@@ -82,7 +82,7 @@ epoch:[ 90/100] | 6m 36s - loss: 0.2726235,  accuracy: 0.9399825,  valid_acc: 0.
 epoch:[100/100] | 7m 48s - loss: 0.2367231,  accuracy: 0.9490362,  valid_acc: 0.669837
 final_loss: 0.2367231,   final_accuracy:0.669837
 
-Cross Validation: k=[6/10]                                                                                                   [30/1938]
+Cross Validation: k=[6/10]
 epoch:[ 10/100] | 8m 45s - loss: 0.7593391,  accuracy: 0.8586449,  valid_acc: 0.5978261
 epoch:[ 20/100] | 8m 39s - loss: 0.5561346,  accuracy: 0.8913551,  valid_acc: 0.6086957
 epoch:[ 30/100] | 9m 18s - loss: 0.4866911,  accuracy: 0.9036945,  valid_acc: 0.6161685
@@ -225,7 +225,7 @@ epoch:[ 80/100] | 3m 28s - loss: 0.2898993,  accuracy: 0.9466268,  valid_acc: 0.
 epoch:[ 90/100] | 3m 27s - loss: 0.2415465,  accuracy: 0.9574328,  valid_acc: 0.673913
 epoch:[100/100] | 3m 27s - loss: 0.2157543,  accuracy: 0.9632739,  valid_acc: 0.6793478
 final_loss: 0.2157543,   final_accuracy:0.6793478
-Cross Validation: k=[6/10]                                                                                                   [30/1868]
+Cross Validation: k=[6/10]
 epoch:[ 10/100] | 3m 26s - loss: 0.8486011,  accuracy: 0.8511974,  valid_acc: 0.595788
 epoch:[ 20/100] | 3m 27s - loss: 0.6119156,  accuracy: 0.8824474,  valid_acc: 0.622962
 epoch:[ 30/100] | 3m 26s - loss: 0.5173955,  accuracy: 0.8975613,  valid_acc: 0.6127717

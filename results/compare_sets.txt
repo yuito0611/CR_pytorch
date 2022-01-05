@@ -77,6 +77,8 @@ epoch:[ 80/100] | 4m 20s - loss: 3.579358,  accuracy: 0.416837,  valid_acc: 0.43
 epoch:[ 90/100] | 4m 20s - loss: 3.712162,  accuracy: 0.3936916,  valid_acc: 0.4150815
 epoch:[100/100] | 4m 20s - loss: 3.805695,  accuracy: 0.3792348,  valid_acc: 0.4116848
 final_loss: 3.805695,   final_accuracy:0.4116848
+
+
 Cross Validation: k=[6/10]                                                                                                    [30/285]
 epoch:[ 10/100] | 4m 21s - loss: 1.25626,  accuracy: 0.7903037,  valid_acc: 0.6039402
 epoch:[ 20/100] | 4m 20s - loss: 1.444044,  accuracy: 0.7640917,  valid_acc: 0.5978261

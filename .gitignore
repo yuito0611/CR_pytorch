@@ -1,8 +1,12 @@
 bin/*
 data/*
 include/*
+Include/*
 lib/*
+Lib/*
 lib64/*
 lib64
 share/*
 pyvenv.cfg
+Scripts/*
+class/__pycache__/*

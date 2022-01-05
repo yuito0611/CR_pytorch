@@ -19,6 +19,23 @@ class TenHotEncodeLayer(nn.Module):
         return hot_out.to(self.device)
 
 
+class WeightedTenHotEncodeLayer(nn.Module):
+    def __init__(self, num_tokens):
+        super().__init__()
+        self.num_tokens = num_tokens
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.to(self.device)
+
+
+    def forward(self,x):
+        hot_out = torch.zeros(x.size(0),x.size(1),self.num_tokens)
+        for N in range(x.size(0)):
+            for T in range(x.size(1)):
+                weight=1.0
+                for F in x[N,T]:
+                    hot_out[N,T,F.long()]=weight
+                    weight -= 0.1
+        return hot_out.to(self.device)
 
 
 #文字(インデックス化された状態)をベクトルに埋め込む (特徴量が5*10=50次元)

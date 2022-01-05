@@ -110,7 +110,7 @@ epoch:[ 40/100] | 2m 37s - loss: 0.04595019,  accuracy: 0.9813084,  valid_acc: 0
 epoch:[ 50/100] | 2m 33s - loss: 0.04246355,  accuracy: 0.9847401,  valid_acc: 0.9110054,  precision: 0.6107383,    recall: 0.5548781
 epoch:[ 60/100] | 2m 33s - loss: 0.03997099,  accuracy: 0.984375,  valid_acc: 0.908288,  precision: 0.5889571,    recall: 0.5853658
 epoch:[ 70/100] | 2m 37s - loss: 0.04079278,  accuracy: 0.9850321,  valid_acc: 0.9089674,  precision: 0.5892857,    recall: 0.6036586
-epoch:[ 80/100] | 2m 38s - loss: 0.03849116,  accuracy: 0.9858353,  valid_acc: 0.9096467,  precision: 0.5987261,    recall: 0.5731707                 [0/1815]
+epoch:[ 80/100] | 2m 38s - loss: 0.03849116,  accuracy: 0.9858353,  valid_acc: 0.9096467,  precision: 0.5987261,    recall: 0.5731707
 epoch:[ 90/100] | 2m 36s - loss: 0.0399418,  accuracy: 0.9856893,  valid_acc: 0.9001359,  precision: 0.5502958,    recall: 0.5670732
 epoch:[100/100] | 2m 38s - loss: 0.03829629,  accuracy: 0.9857623,  valid_acc: 0.8913043,  precision: 0.5103093,    recall: 0.6036586
 final_loss: 0.03829629,   final_accuracy:0.8913043
