@@ -1,7 +1,10 @@
 直前のN文字からN文字目を予測するRNNでBidirectionalにしてNを変化させて比較した
 共通条件：RNN１層、ten_hot_encode, bidirectional
-比較条件：N=5,7,9
+比較条件：N=3,5,7,9
 結果：
+〇N=3
+accu average: 0.7618885869565217
+loss average: 0.1077419800495036
 〇N=5
 accu average: 0.7497282608695652
 loss average: 0.25707134910789536
@@ -11,6 +14,146 @@ loss average: 0.2817914618252098
 〇N=9
 accu average: 0.7563179347826087
 loss average: 0.26399518741678196
+
+
+
+
+〇bidirectional set3
+Cross Validation: k=[1/10]
+epoch:[ 10/100] | 15m 24s - loss: 0.6617359,  accuracy: 0.874781,  valid_acc: 0.7357337
+epoch:[ 20/100] | 19m 26s - loss: 0.4771341,  accuracy: 0.9016501,  valid_acc: 0.7418478
+epoch:[ 30/100] | 14m 16s - loss: 0.4044991,  accuracy: 0.9119451,  valid_acc: 0.7377717
+epoch:[ 40/100] | 9m 45s - loss: 0.3465749,  accuracy: 0.922021,  valid_acc: 0.7269022
+epoch:[ 50/100] | 15m 16s - loss: 0.2778107,  accuracy: 0.9352366,  valid_acc: 0.736413
+epoch:[ 60/100] | 15m 17s - loss: 0.2408133,  accuracy: 0.9451665,  valid_acc: 0.7377717
+epoch:[ 70/100] | 15m 10s - loss: 0.2161853,  accuracy: 0.9507886,  valid_acc: 0.7248641
+epoch:[ 80/100] | 14m 44s - loss: 0.1673102,  accuracy: 0.958455,  valid_acc: 0.7235054
+epoch:[ 90/100] | 14m 23s - loss: 0.1363588,  accuracy: 0.9695532,  valid_acc: 0.7357337
+epoch:[100/100] | 11m 44s - loss: 0.1032482,  accuracy: 0.9774387,  valid_acc: 0.7459239
+final_loss: 0.1032482,   final_accuracy:0.7459239
+
+Cross Validation: k=[2/10]
+epoch:[ 10/100] | 15m 5s - loss: 0.6605564,  accuracy: 0.8734667,  valid_acc: 0.7228261
+epoch:[ 20/100] | 15m 17s - loss: 0.4617053,  accuracy: 0.9017231,  valid_acc: 0.7235054
+epoch:[ 30/100] | 15m 31s - loss: 0.3914741,  accuracy: 0.9145736,  valid_acc: 0.7099185
+epoch:[ 40/100] | 14m 38s - loss: 0.3343297,  accuracy: 0.9239194,  valid_acc: 0.7221467
+epoch:[ 50/100] | 14m 7s - loss: 0.2875234,  accuracy: 0.9339223,  valid_acc: 0.7275815
+epoch:[ 60/100] | 11m 4s - loss: 0.2436197,  accuracy: 0.9412967,  valid_acc: 0.7275815
+epoch:[ 70/100] | 15m 13s - loss: 0.2052036,  accuracy: 0.9494743,  valid_acc: 0.7214674
+epoch:[ 80/100] | 15m 13s - loss: 0.1705736,  accuracy: 0.9600613,  valid_acc: 0.7296196
+epoch:[ 90/100] | 15m 12s - loss: 0.1396627,  accuracy: 0.9706484,  valid_acc: 0.7275815
+epoch:[100/100] | 14m 30s - loss: 0.1033776,  accuracy: 0.9776577,  valid_acc: 0.7255435
+final_loss: 0.1033776,   final_accuracy:0.7255435
+
+Cross Validation: k=[3/10]
+epoch:[ 10/100] | 13m 52s - loss: 0.6771485,  accuracy: 0.8712033,  valid_acc: 0.7730978
+epoch:[ 20/100] | 11m 57s - loss: 0.4954485,  accuracy: 0.8966121,  valid_acc: 0.7629076
+epoch:[ 30/100] | 15m 22s - loss: 0.381312,  accuracy: 0.9153768,  valid_acc: 0.75
+epoch:[ 40/100] | 15m 11s - loss: 0.3461944,  accuracy: 0.9240654,  valid_acc: 0.7574728
+epoch:[ 50/100] | 15m 17s - loss: 0.2893305,  accuracy: 0.9326081,  valid_acc: 0.7547554
+epoch:[ 60/100] | 14m 30s - loss: 0.2498532,  accuracy: 0.9420999,  valid_acc: 0.7452446
+epoch:[ 70/100] | 13m 45s - loss: 0.1935966,  accuracy: 0.9553884,  valid_acc: 0.7466033
+epoch:[ 80/100] | 12m 18s - loss: 0.169259,  accuracy: 0.9596963,  valid_acc: 0.7581522
+epoch:[ 90/100] | 16m 48s - loss: 0.1266763,  accuracy: 0.9713785,  valid_acc: 0.7690217
+epoch:[100/100] | 15m 38s - loss: 0.09878378,  accuracy: 0.9796291,  valid_acc: 0.7730978
+final_loss: 0.09878378,   final_accuracy:0.7730978
+
+Cross Validation: k=[4/10]
+epoch:[ 10/100] | 15m 46s - loss: 0.6420084,  accuracy: 0.8758762,  valid_acc: 0.6759511
+epoch:[ 20/100] | 15m 11s - loss: 0.4597009,  accuracy: 0.9042786,  valid_acc: 0.6705163
+epoch:[ 30/100] | 44m 16s - loss: 0.3487122,  accuracy: 0.9231893,  valid_acc: 0.6875
+epoch:[ 40/100] | 6m 34s - loss: 0.3098355,  accuracy: 0.9310748,  valid_acc: 0.669837
+epoch:[ 50/100] | 12m 23s - loss: 0.2741046,  accuracy: 0.9382301,  valid_acc: 0.6630435
+epoch:[ 60/100] | 15m 40s - loss: 0.2172875,  accuracy: 0.9496933,  valid_acc: 0.6569293
+epoch:[ 70/100] | 15m 28s - loss: 0.1913921,  accuracy: 0.9559725,  valid_acc: 0.6725543
+epoch:[ 80/100] | 15m 34s - loss: 0.1433207,  accuracy: 0.9690421,  valid_acc: 0.6841033
+epoch:[ 90/100] | 15m 7s - loss: 0.1134726,  accuracy: 0.9772196,  valid_acc: 0.6725543
+epoch:[100/100] | 15m 6s - loss: 0.102639,  accuracy: 0.9817465,  valid_acc: 0.6807065
+final_loss: 0.102639,   final_accuracy:0.6807065
+
+Cross Validation: k=[5/10]
+epoch:[ 10/100] | 10m 52s - loss: 0.6604712,  accuracy: 0.8774825,  valid_acc: 0.6732337
+epoch:[ 20/100] | 15m 53s - loss: 0.4632866,  accuracy: 0.9048627,  valid_acc: 0.6827446
+epoch:[ 30/100] | 15m 49s - loss: 0.3966384,  accuracy: 0.9117261,  valid_acc: 0.6908967
+epoch:[ 40/100] | 15m 47s - loss: 0.3429456,  accuracy: 0.9249416,  valid_acc: 0.6752717
+epoch:[ 50/100] | 15m 22s - loss: 0.2675967,  accuracy: 0.9407126,  valid_acc: 0.6888587
+epoch:[ 60/100] | 15m 8s - loss: 0.2447816,  accuracy: 0.9439982,  valid_acc: 0.6759511
+epoch:[ 70/100] | 13m 10s - loss: 0.2054009,  accuracy: 0.9496933,  valid_acc: 0.6847826
+epoch:[ 80/100] | 11m 30s - loss: 0.1576778,  accuracy: 0.9625438,  valid_acc: 0.6868207
+epoch:[ 90/100] | 15m 44s - loss: 0.1403674,  accuracy: 0.9668516,  valid_acc: 0.6902174
+epoch:[100/100] | 15m 34s - loss: 0.09846284,  accuracy: 0.9775117,  valid_acc: 0.685462
+final_loss: 0.09846284,   final_accuracy:0.685462
+
+Cross Validation: k=[6/10]
+epoch:[ 10/100] | 15m 41s - loss: 0.6211657,  accuracy: 0.8812792,  valid_acc: 0.6052989
+epoch:[ 20/100] | 15m 8s - loss: 0.4675536,  accuracy: 0.9048627,  valid_acc: 0.6019022
+epoch:[ 30/100] | 14m 57s - loss: 0.3523976,  accuracy: 0.9193925,  valid_acc: 0.6216033
+epoch:[ 40/100] | 11m 33s - loss: 0.3245506,  accuracy: 0.9279352,  valid_acc: 0.6175272
+epoch:[ 50/100] | 15m 31s - loss: 0.2652179,  accuracy: 0.9385222,  valid_acc: 0.6107337
+epoch:[ 60/100] | 15m 41s - loss: 0.2289762,  accuracy: 0.9475759,  valid_acc: 0.6052989
+epoch:[ 70/100] | 15m 39s - loss: 0.1957471,  accuracy: 0.9537091,  valid_acc: 0.6216033
+epoch:[ 80/100] | 15m 21s - loss: 0.1864827,  accuracy: 0.958163,  valid_acc: 0.6127717
+epoch:[ 90/100] | 15m 0s - loss: 0.124204,  accuracy: 0.9729118,  valid_acc: 0.6182065
+epoch:[100/100] | 11m 12s - loss: 0.09769199,  accuracy: 0.9804322,  valid_acc: 0.627038
+final_loss: 0.09769199,   final_accuracy:0.627038
+
+Cross Validation: k=[7/10]
+epoch:[ 10/100] | 15m 0s - loss: 0.6809572,  accuracy: 0.8684287,  valid_acc: 0.8009511
+epoch:[ 20/100] | 15m 36s - loss: 0.4769774,  accuracy: 0.901212,  valid_acc: 0.8118207
+epoch:[ 30/100] | 15m 36s - loss: 0.3979681,  accuracy: 0.9138435,  valid_acc: 0.8111413
+epoch:[ 40/100] | 15m 34s - loss: 0.3435143,  accuracy: 0.9253067,  valid_acc: 0.8152174
+epoch:[ 50/100] | 14m 59s - loss: 0.3124638,  accuracy: 0.9296875,  valid_acc: 0.814538
+epoch:[ 60/100] | 14m 58s - loss: 0.2330892,  accuracy: 0.9442173,  valid_acc: 0.8186141
+epoch:[ 70/100] | 8m 26s - loss: 0.210992,  accuracy: 0.9495473,  valid_acc: 0.8247283
+epoch:[ 80/100] | 15m 41s - loss: 0.1906338,  accuracy: 0.9547313,  valid_acc: 0.8186141
+epoch:[ 90/100] | 15m 35s - loss: 0.1330698,  accuracy: 0.9717436,  valid_acc: 0.8192935
+epoch:[100/100] | 15m 38s - loss: 0.1167773,  accuracy: 0.9756133,  valid_acc: 0.8267663
+final_loss: 0.1167773,   final_accuracy:0.8267663
+
+Cross Validation: k=[8/10]
+epoch:[ 10/100] | 15m 18s - loss: 0.6964239,  accuracy: 0.8671875,  valid_acc: 0.8566576
+epoch:[ 20/100] | 15m 8s - loss: 0.5005934,  accuracy: 0.8950058,  valid_acc: 0.8580163
+epoch:[ 30/100] | 11m 14s - loss: 0.4110466,  accuracy: 0.9093166,  valid_acc: 0.8498641
+epoch:[ 40/100] | 14m 6s - loss: 0.3378061,  accuracy: 0.9209258,  valid_acc: 0.8532609
+epoch:[ 50/100] | 15m 41s - loss: 0.2879131,  accuracy: 0.9317319,  valid_acc: 0.8607337
+epoch:[ 60/100] | 15m 37s - loss: 0.2525776,  accuracy: 0.9399095,  valid_acc: 0.8491848
+epoch:[ 70/100] | 17m 7s - loss: 0.2144919,  accuracy: 0.9510076,  valid_acc: 0.8695652
+epoch:[ 80/100] | 15m 58s - loss: 0.169444,  accuracy: 0.9621787,  valid_acc: 0.8627717
+epoch:[ 90/100] | 14m 56s - loss: 0.141562,  accuracy: 0.9698452,  valid_acc: 0.8668478
+epoch:[100/100] | 3m 57s - loss: 0.113771,  accuracy: 0.9773657,  valid_acc: 0.8716033
+final_loss: 0.113771,   final_accuracy:0.8716033
+
+Cross Validation: k=[9/10]
+epoch:[ 10/100] | 1m 59s - loss: 0.7023769,  accuracy: 0.8676986,  valid_acc: 0.8213315
+epoch:[ 20/100] | 2m 20s - loss: 0.4865561,  accuracy: 0.8996787,  valid_acc: 0.8451087
+epoch:[ 30/100] | 15m 39s - loss: 0.3830537,  accuracy: 0.9147926,  valid_acc: 0.8396739
+epoch:[ 40/100] | 15m 37s - loss: 0.3376436,  accuracy: 0.9250146,  valid_acc: 0.8403533
+epoch:[ 50/100] | 15m 35s - loss: 0.2756117,  accuracy: 0.9342874,  valid_acc: 0.841712
+epoch:[ 60/100] | 15m 29s - loss: 0.2571985,  accuracy: 0.9394714,  valid_acc: 0.8430707
+epoch:[ 70/100] | 14m 58s - loss: 0.2046643,  accuracy: 0.9504235,  valid_acc: 0.8355978
+epoch:[ 80/100] | 14m 14s - loss: 0.1487113,  accuracy: 0.9660485,  valid_acc: 0.8383152
+epoch:[ 90/100] | 7m 37s - loss: 0.122115,  accuracy: 0.9733499,  valid_acc: 0.841712
+epoch:[100/100] | 15m 38s - loss: 0.1071469,  accuracy: 0.979191,  valid_acc: 0.8505435
+final_loss: 0.1071469,   final_accuracy:0.8505435
+
+Cross Validation: k=[10/10]
+epoch:[ 10/100] | 15m 35s - loss: 0.6885889,  accuracy: 0.8642669,  valid_acc: 0.8233696
+epoch:[ 20/100] | 15m 36s - loss: 0.5233482,  accuracy: 0.8909171,  valid_acc: 0.8226902
+epoch:[ 30/100] | 15m 10s - loss: 0.4259978,  accuracy: 0.9096086,  valid_acc: 0.8322011
+epoch:[ 40/100] | 14m 44s - loss: 0.3554854,  accuracy: 0.9214369,  valid_acc: 0.8362772
+epoch:[ 50/100] | 11m 24s - loss: 0.3261583,  accuracy: 0.9261098,  valid_acc: 0.8254076
+epoch:[ 60/100] | 39m 39s - loss: 0.2772339,  accuracy: 0.9369159,  valid_acc: 0.8186141
+epoch:[ 70/100] | 15m 8s - loss: 0.2347348,  accuracy: 0.942903,  valid_acc: 0.8335598
+epoch:[ 80/100] | 15m 5s - loss: 0.2060454,  accuracy: 0.9499124,  valid_acc: 0.8288043
+epoch:[ 90/100] | 14m 57s - loss: 0.1700471,  accuracy: 0.9601343,  valid_acc: 0.8308424
+epoch:[100/100] | 14m 13s - loss: 0.1355213,  accuracy: 0.9699912,  valid_acc: 0.8322011
+final_loss: 0.1355213,   final_accuracy:0.8322011
+
+
+*** accuracies: [0.7459239130434783, 0.7255434782608695, 0.7730978260869565, 0.6807065217391305, 0.6854619565217391, 0.6270380434782609, 0.826766304347826, 0.8716032608695652, 0.8505434782608695, 0.8322010869565217]
+*** losses: [0.10324816983504598, 0.10337757631076844, 0.09878378258986444, 0.10263898258105834, 0.0984628365816113, 0.09769198927375608, 0.11677731254792753, 0.11377100107763857, 0.10714686536220627, 0.13552128433515906]
+*** accu average: 0.7618885869565217
+*** loss average: 0.1077419800495036
 
 〇bidirectional 5 set
 Cross Validation: k=[1/10]

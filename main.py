@@ -12,7 +12,7 @@ import pprint
 from CharToIndex import CharToIndex
 from MyDatasets import BaseDataset_set3 as MyDataset
 from MyDatasets import Cross_Validation
-from MyCustomLayer import TenHotEncodeLayer
+from MyCustomLayer import WeightedTenHotEncodeLayer
 
 import time
 import math
@@ -97,7 +97,7 @@ class Proofreader(nn.Module):
         self.n_layers  = n_layers
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-        self.encoder = TenHotEncodeLayer(output_size)
+        self.encoder = WeightedTenHotEncodeLayer(output_size)
         self.rnn = nn.RNN(output_size, self.hidden_dim, batch_first=True,bidirectional=True)
         self.fc = nn.Linear(self.hidden_dim*2, output_size)
         self.dropout = torch.nn.Dropout(p=0.5)
