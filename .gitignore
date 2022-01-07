@@ -10,3 +10,4 @@ share/*
 pyvenv.cfg
 Scripts/*
 class/__pycache__/*
+workspace.code-workspace
