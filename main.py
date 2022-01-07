@@ -4,13 +4,12 @@ import numpy as np
 import torch.nn as nn
 from torch import optim
 from torch.utils.data import DataLoader
-from torchinfo import summary
 import numpy as np
 import matplotlib.pyplot as plt
 import pprint
 
 from CharToIndex import CharToIndex
-from MyDatasets import BaseDataset_set3 as MyDataset
+from MyDatasets import BaseDataset_set7 as MyDataset
 from MyDatasets import Cross_Validation
 from MyCustomLayer import WeightedTenHotEncodeLayer
 
@@ -194,16 +193,19 @@ for i in range(k_num):
     final_accuracies.append(acc_record[-1])
     final_losses.append(loss_record[-1])
 
-print(f'*** accuracies: {final_accuracies}')
-print(f'*** losses: {final_losses}')
 
-print(f'*** accu average: {np.mean(final_accuracies)}')
-print(f'*** loss average: {np.mean(final_losses)}')
+print(f'=================================================')
+print(f'accuracies: {final_accuracies}')
+print(f'losses: {final_losses}')
 
-text_file.write(f'\n*** accuracies: {final_accuracies}')
-text_file.write(f'\n*** losses: {final_losses}')
-text_file.write(f'\n*** accu average: {np.mean(final_accuracies)}')
-text_file.write(f'\n*** loss average: {np.mean(final_losses)}')
+print(f'accu average: {np.mean(final_accuracies)}')
+print(f'loss average: {np.mean(final_losses)}')
+
+text_file.write(f'=================================================')
+text_file.write(f'\naccuracies: {final_accuracies}')
+text_file.write(f'\nlosses: {final_losses}')
+text_file.write(f'\naccu average: {np.mean(final_accuracies)}')
+text_file.write(f'\nloss average: {np.mean(final_losses)}')
 
 text_file.close()
 
