@@ -1,26 +1,24 @@
-
+# %%
 import torch
 import numpy as np
 import torch.nn as nn
 from torch import optim
 from torch.utils.data import DataLoader
-from torchinfo import summary
 import numpy as np
 import matplotlib.pyplot as plt
-import pprint
 
 from CharToIndex import CharToIndex
-from MyDatasets import BaseDataset_set3 as MyDataset
+from MyDatasets import BaseDataset_set5 as MyDataset
 from MyDatasets import Cross_Validation
 from MyCustomLayer import WeightedTenHotEncodeLayer
 
 import time
 import math
 
-
-chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
+# %%
+chars_file_path = r"data\tegaki_katsuji\all_chars_3812.npy"
 tokens = CharToIndex(chars_file_path)
-file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki.npy"
+file_path = r"data\tegaki_katsuji\tegaki.npy"
 data = np.load(file_path,allow_pickle=True)
 
 EMBEDDING_DIM = 10
@@ -31,7 +29,7 @@ VOCAB_SIZE = len(tokens)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 tegaki_dataset = MyDataset(data,chars_file_path,device=device)
 
-
+# %%
 def timeSince(since):
     now = time.time()
     s = now - since
@@ -86,7 +84,7 @@ def eval(model,valid_dataloader,is_show_ans_pred=False):
 
     return accuracy/len(valid_dataloader)
 
-
+# %%
 #hot encode用
 class Proofreader(nn.Module):
     def __init__(self, input_size, hidden_dim, output_size,n_layers):
@@ -119,7 +117,7 @@ class Proofreader(nn.Module):
         return out
 
 
-
+# %%
 def get_correct_char(model,valid_dataloader,correct_char):
     accuracy = 0
     batch_size = next(iter(valid_dataloader))[0].size(0)
@@ -137,7 +135,7 @@ def get_correct_char(model,valid_dataloader,correct_char):
     return accuracy/len(valid_dataloader),correct_char
 
 
-
+# %%
 final_accuracies = []
 final_losses = []
 correct_char=torch.zeros(len(tokens),dtype=torch.int)
