@@ -1,24 +1,19 @@
-# %%
+
 import torch
 import numpy as np
 import torch.nn as nn
 from torch import optim
 from torch.utils.data import DataLoader
-import numpy as np
-import matplotlib.pyplot as plt
-
 from CharToIndex import CharToIndex
-from MyDatasets import BaseDataset_set5 as MyDataset
 from MyDatasets import Cross_Validation
-from MyCustomLayer import WeightedTenHotEncodeLayer
+from MyDatasets import BaseDataset_set5 as MyDataset
+from MyCustomLayer import TenHotEncodeLayer
+import torch.nn.functional as F
 
-import time
-import math
 
-# %%
-chars_file_path = r"data\tegaki_katsuji\all_chars_3812.npy"
+chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
 tokens = CharToIndex(chars_file_path)
-file_path = r"data\tegaki_katsuji\tegaki.npy"
+file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki.npy"
 data = np.load(file_path,allow_pickle=True)
 
 EMBEDDING_DIM = 10
@@ -29,7 +24,134 @@ VOCAB_SIZE = len(tokens)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 tegaki_dataset = MyDataset(data,chars_file_path,device=device)
 
-# %%
+
+def train(detector,proofreader,train_dataloader,learning_rate=0.001):
+    d_criterion = nn.CrossEntropyLoss()
+    p_criterion = nn.CrossEntropyLoss()
+
+    d_optim = optim.Adam(detector.parameters(), lr=learning_rate)
+    p_optim = optim.Adam(proofreader.parameters(), lr=learning_rate)
+
+    batch_size = next(iter(train_dataloader))[0].size(0)
+    d_running_loss = 0
+    p_running_loss = 0
+
+    d_runnning_accu = 0
+    p_runnning_accu = 0
+
+    detector.train()
+    proofreader.train()
+    for i,(x,y) in enumerate(train_dataloader):
+        #検出器の処理
+        ## 検出器用のデータセット作成
+        x_for_detector = x[:,-1]
+        y_for_detector = torch.zeros(batch_size,dtype=torch.long).to(device)
+        y_for_detector.add_(x_for_detector[:,0].eq(y))
+
+        d_output = detector(x_for_detector)
+        d_tmp_loss = d_criterion(d_output, y_for_detector) #損失計算
+        d_prediction = d_output.data.max(1)[1] #予測結果
+        d_runnning_accu += d_prediction.eq(y_for_detector).sum().item()/batch_size
+        d_optim.zero_grad() #勾配初期化
+        d_tmp_loss.backward(retain_graph=True) #逆伝播
+        d_optim.step()  #重み更新
+        d_running_loss += d_tmp_loss.item()
+
+
+        #修正器の処理
+        p_output = proofreader(x)
+        p_tmp_loss = p_criterion(p_output, y) #損失計算
+        p_prediction = p_output.data.max(1)[1] #予測結果
+        p_runnning_accu += p_prediction.eq(y.data).sum().item()/batch_size
+        p_optim.zero_grad() #勾配初期化
+        p_tmp_loss.backward(retain_graph=True) #逆伝播
+        p_optim.step()  #重み更新
+        p_running_loss += p_tmp_loss.item()
+
+    p_loss = p_running_loss/len(train_dataloader)
+    p_accu = p_runnning_accu/len(train_dataloader)
+    d_loss = d_running_loss/len(train_dataloader)
+    d_accu = d_runnning_accu/len(train_dataloader)
+
+    return d_loss,d_accu,p_loss,p_accu
+
+def eval(detector,proofreader,valid_dataloader):
+    confusion_matrix = torch.zeros(2,2)
+    batch_size = next(iter(valid_dataloader))[0].size(0)
+
+    d_runnning_accu = 0
+    p_runnning_accu = 0
+
+    detector.eval()
+    proofreader.eval()
+
+    for x,y in valid_dataloader:
+        #検出器の処理
+        ## 検出器用のデータセット作成
+        x_for_detector = x[:,-1]
+        y_for_detector = torch.zeros(batch_size,dtype=torch.long).to(device)
+        y_for_detector.add_(x_for_detector[:,0].eq(y))
+
+        d_output = detector(x_for_detector)
+        d_prediction = d_output.data.max(1)[1] #予測結果
+        d_runnning_accu += d_prediction.eq(y_for_detector).sum().item()/batch_size
+
+
+        #修正器の処理
+        p_output = proofreader(x)
+        p_prediction = p_output.data.max(1)[1] #予測結果
+        p_runnning_accu += p_prediction.eq(y.data).sum().item()/batch_size
+
+    p_accu = p_runnning_accu/len(valid_dataloader)
+    d_accu = d_runnning_accu/len(valid_dataloader)
+
+    return d_accu,p_accu, confusion_matrix
+
+def examination(detector,proofreader,valid_dataloader,show_out=False):
+    confusion_matrix = torch.zeros(2,2)
+    batch_size = next(iter(valid_dataloader))[0].size(0)
+
+    runnning_accu = 0
+
+    detector.eval()
+    proofreader.eval()
+
+
+    for x,y in valid_dataloader:
+        #検出器の処理
+        ## 検出器用のデータセット作成
+        x_for_detector = x[:,-1]
+        ocr_pred = x_for_detector[:,0] #OCR第一候補
+
+        d_output = detector(x_for_detector)
+        flg_ocr = d_output.data.max(1)[1] #ocrの出力を使用するか
+        ocr_pred.mul_(flg_ocr)
+
+        #修正器の処理
+        p_output = proofreader(x)
+        rnn_pred = p_output.data.max(1)[1] #RNNの予測結果
+        flg_rnn = torch.logical_not(flg_ocr,out=torch.empty(batch_size,dtype=torch.long).to(device))#rnnの出力を使用するか
+        rnn_pred.mul_(flg_rnn)
+
+        prediction = torch.add(ocr_pred,rnn_pred)
+        runnning_accu += prediction.eq(y.data).sum().item()/batch_size
+
+        if show_out:
+            for idx in y.data:
+                print(tokens.get_decoded_char(idx),end='')
+            print()
+            for idx in prediction:
+                print(tokens.get_decoded_char(idx),end='')
+            print()
+
+    accuracy = runnning_accu/len(valid_dataloader)
+    return accuracy
+
+
+
+
+import time
+import math
 def timeSince(since):
     now = time.time()
     s = now - since
@@ -37,55 +159,25 @@ def timeSince(since):
     s -= m * 60
     return '%dm %ds' % (m, s)
 
-def show_ans_pred(answers,predictions):
-    for ans,pred in zip(answers,predictions):
-        correct = '✓' if ans.item() == pred.item() else '✗'
-        print(f'{tokens.get_decoded_char(ans.item())}{tokens.get_decoded_char(pred.item()):2} {correct}',end=' ')
-    print()
+
+class Detector(nn.Module):
+  def __init__(self,encode_size):
+    super(Detector, self).__init__()
+    self.encoder = TenHotEncodeLayer(encode_size)
+    self.fc1 = nn.Linear(encode_size, 128)
+    self.fc2 = nn.Linear(128, 2)
+    self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    self.to(self.device)
+
+  def forward(self, x):
+    x = self.encoder(x)
+    x = F.relu(self.fc1(x))
+    x = self.fc2(x)
+    return F.log_softmax(x, dim=0)
 
 
 
-def train(model,train_dataloader,learning_rate=0.001):
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-    batch_size = next(iter(train_dataloader))[0].size(0)
-    running_loss = 0
-    accuracy = 0
-
-    model.train()
-    for i,(x,y) in enumerate(train_dataloader):
-        output = model(x)
-        loss = criterion(output, y) #損失計算
-        prediction = output.data.max(1)[1] #予測結果
-        accuracy += prediction.eq(y.data).sum().item()/batch_size
-        optimizer.zero_grad() #勾配初期化
-        loss.backward(retain_graph=True) #逆伝播
-        optimizer.step()  #重み更新
-        running_loss += loss.item()
-
-    loss_result = running_loss/len(train_dataloader)
-    accuracy_result = accuracy/len(train_dataloader)
-
-    return loss_result,accuracy_result
-
-
-def eval(model,valid_dataloader,is_show_ans_pred=False):
-    accuracy = 0
-    batch_size = next(iter(valid_dataloader))[0].size(0)
-    model.eval()
-    for x,y in valid_dataloader:
-        output = model(x)
-        prediction = output.data.max(1)[1] #予測結果
-        accuracy += prediction.eq(y.data).sum().item()/batch_size
-        if is_show_ans_pred:
-            ans_pred_list=show_ans_pred(y,prediction)
-            print(ans_pred_list)
-
-    return accuracy/len(valid_dataloader)
-
-# %%
-#hot encode用
 class Proofreader(nn.Module):
     def __init__(self, input_size, hidden_dim, output_size,n_layers):
         super(Proofreader, self).__init__()
@@ -95,7 +187,7 @@ class Proofreader(nn.Module):
         self.n_layers  = n_layers
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-        self.encoder = WeightedTenHotEncodeLayer(output_size)
+        self.encoder = TenHotEncodeLayer(output_size)
         self.rnn = nn.RNN(output_size, self.hidden_dim, batch_first=True,bidirectional=True)
         self.fc = nn.Linear(self.hidden_dim*2, output_size)
         self.dropout = torch.nn.Dropout(p=0.5)
@@ -117,34 +209,12 @@ class Proofreader(nn.Module):
         return out
 
 
-# %%
-def get_correct_char(model,valid_dataloader,correct_char):
-    accuracy = 0
-    batch_size = next(iter(valid_dataloader))[0].size(0)
-    model.eval()
-    for x,y in valid_dataloader:
-        output = model(x)
-        prediction = output.data.max(1)[1] #予測結果
-        accuracy += prediction.eq(y.data).sum().item()/batch_size
+text_file = open("output.txt","wt") #結果の保存
 
-        for correct,idx in zip(prediction.eq(y.data),y.data):
-            if correct:
-                correct_char[idx]+=1
-
-
-    return accuracy/len(valid_dataloader),correct_char
-
-
-# %%
-final_accuracies = []
-final_losses = []
-correct_char=torch.zeros(len(tokens),dtype=torch.int)
 
 cross_validation = Cross_Validation(tegaki_dataset)
 k_num = cross_validation.k_num #デフォルトは10
-# k_num = 1
-
-text_file = open("output.txt","wt") #結果の保存
+# k_num=1
 
 
 ##学習
@@ -152,60 +222,77 @@ for i in range(k_num):
     train_dataset,valid_dataset = cross_validation.get_datasets(k_idx=i)
 
     print(f'Cross Validation: k=[{i+1}/{k_num}]')
-    text_file.write(f'Cross Validation: k=[{i+1}/{k_num}]')
+    text_file.write(f'Cross Validation: k=[{i+1}/{k_num}]\n')
 
     train_dataloader=DataLoader(train_dataset,batch_size=BATCH_SIZE,shuffle=True,drop_last=True) #訓練データのみシャッフル
     valid_dataloader=DataLoader(valid_dataset,batch_size=BATCH_SIZE,shuffle=False,drop_last=True)
-    model = Proofreader(VOCAB_SIZE, hidden_dim=HIDDEN_SIZE, output_size=VOCAB_SIZE, n_layers=1)
-    # model.load_state_dict(torch.load("data/tegaki_katsuji/pre_trained_model.pth"))
+    proofreader = Proofreader(VOCAB_SIZE, hidden_dim=HIDDEN_SIZE, output_size=VOCAB_SIZE, n_layers=1)
+    detector = Detector(encode_size=len(tokens))
 
     epochs = 100
-    acc_record=[]
-    loss_record=[]
+    # epochs = 10
+    d_acc_record=[]
+    d_loss_record=[]
+    p_acc_record=[]
+    p_loss_record=[]
+    acc_record = []
     start = time.time() #開始時間の設定
 
     for epoch in range(1,epochs+1):
         #進捗表示
-        i = (epoch-1)%10
-        pro_bar = ('=' * i) + (' ' * (10 - i))
-        print('\r[{0}] {1}%'.format(pro_bar, i / 10 * 100.), end='')
+        print(f'\r{epoch}', end='')
 
+        d_loss,d_accu,p_loss,p_accu = train(detector,proofreader,train_dataloader,learning_rate=0.01)
 
-        loss,acc = train(model,train_dataloader,learning_rate=0.01)
+        d_val_accu,p_val_accu,conf_mat = eval(detector,proofreader,valid_dataloader)
+        d_loss_record.append(d_loss)
+        d_acc_record.append(d_val_accu)
+        p_loss_record.append(p_loss)
+        p_acc_record.append(p_val_accu)
 
-        valid_acc = eval(model,valid_dataloader)
-        loss_record.append(loss)
-        acc_record.append(valid_acc)
-
+        # print(f'\n d_loss:{d_loss:.5}, d_accu:{d_accu:.5}, d_val_accu:{d_val_accu:.5}')
+        # print(f' p_loss:{p_loss:.5}, p_accu:{p_accu:.5}, p_val_accu:{p_val_accu:.5}')
 
         if epoch%10==0:
-            print(f'\repoch:[{epoch:3}/{epochs}] | {timeSince(start)} - loss: {loss:.7},  accuracy: {acc:.7},  valid_acc: {valid_acc:.7}')
-            text_file.write(f'\repoch:[{epoch:3}/{epochs}] | {timeSince(start)} - loss: {loss:.7},  accuracy: {acc:.7},  valid_acc: {valid_acc:.7}')
+            print(f'\r epoch:[{epoch:3}/{epochs}]| {timeSince(start)}')
+            print(f'   Detector| loss:{d_loss:.5}, accu:{d_accu:.5}, val_accu:{d_val_accu:.5}')
+            print(f'   Proof   | loss:{p_loss:.5}, accu:{p_accu:.5}, val_accu:{p_val_accu:.5}')
+            text_file.write(f'\r epoch:[{epoch:3}/{epochs}]\n')
+            text_file.write(f'   Detector| loss:{d_loss:.5}, accu:{d_accu:.5}, val_accu:{d_val_accu:.5}\n')
+            text_file.write(f'   Proof   | loss:{p_loss:.5}, accu:{p_accu:.5}, val_accu:{p_val_accu:.5}\n')
             start = time.time() #開始時間の設定
 
-    acc,correct_char=get_correct_char(model,valid_dataloader,correct_char)
-
-
-    print(f'final_loss: {loss_record[-1]:.7},   final_accuracy:{acc_record[-1]:.7}\n\n')
-    text_file.write(f'\nfinal_loss: {loss_record[-1]:.7},   final_accuracy:{acc_record[-1]:.7}\n\n')
-
-    final_accuracies.append(acc_record[-1])
-    final_losses.append(loss_record[-1])
+    #学習結果の表示
+    accuracy = examination(detector,proofreader,valid_dataloader,show_out=False)
+    acc_record.append(accuracy)
+    print(f' examin accuracy:{acc_record[-1]:.7}\n\n')
+    text_file.write(f' examin accuracy:{acc_record[-1]:.7}\n\n')
 
 
 print(f'=================================================')
-print(f'accuracies: {final_accuracies}')
-print(f'losses: {final_losses}')
+print(f'examin accuracies: {acc_record}')
+print(f'examin accu average: {np.mean(acc_record)}')
+print(f'Detector \nacc: {d_acc_record}')
+print(f'loss: {d_loss_record}')
+print(f'acc average: {np.mean(d_acc_record)}')
+print(f'Proof \nacc: {p_acc_record}')
+print(f'loss: {p_loss_record}')
+print(f'Examin\nacc average: {np.mean(p_acc_record)}')
 
-print(f'accu average: {np.mean(final_accuracies)}')
-print(f'loss average: {np.mean(final_losses)}')
 
-text_file.write(f'=================================================')
-text_file.write(f'\naccuracies: {final_accuracies}')
-text_file.write(f'\nlosses: {final_losses}')
-text_file.write(f'\naccu average: {np.mean(final_accuracies)}')
-text_file.write(f'\nloss average: {np.mean(final_losses)}')
+text_file.write(f'=================================================\n\n')
+text_file.write(f'examin accuracies: {acc_record}\n')
+text_file.write(f'examin accu average: {np.mean(acc_record)}\n')
+text_file.write(f'Detector \nacc: {d_acc_record}\n')
+text_file.write(f'loss: {d_loss_record}\n')
+text_file.write(f'acc average: {np.mean(d_acc_record)}\n')
+text_file.write(f'Proof \nacc: {p_acc_record}\n')
+text_file.write(f'loss: {p_loss_record}\n')
+text_file.write(f'Examin\nacc average: {np.mean(p_acc_record)}\n')
 
 text_file.close()
+
+
+
 
 

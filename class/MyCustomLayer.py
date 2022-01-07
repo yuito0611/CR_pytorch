@@ -11,12 +11,21 @@ class TenHotEncodeLayer(nn.Module):
 
 
     def forward(self,x):
-        hot_out = torch.zeros(x.size(0),x.size(1),self.num_tokens)
-        for N in range(x.size(0)):
-            for T in range(x.size(1)):
-                for F in x[N,T]:
-                    hot_out[N,T,F.long()]=1
-        return hot_out.to(self.device)
+        assert x.dim() == 2 or x.dim() == 3 #xの次元数が2か3であることを確認
+        if x.dim() == 2:
+            hot_out = torch.zeros(x.size(0),self.num_tokens)
+            for N in range(x.size(0)):
+                for F in x[N]:
+                    hot_out[N,F.long()]=1
+            return hot_out.to(self.device)
+
+        if x.dim() == 3:
+            hot_out = torch.zeros(x.size(0),x.size(1),self.num_tokens)
+            for N in range(x.size(0)):
+                for T in range(x.size(1)):
+                    for F in x[N,T]:
+                        hot_out[N,T,F.long()]=1
+            return hot_out.to(self.device)
 
 
 class WeightedTenHotEncodeLayer(nn.Module):
@@ -28,14 +37,26 @@ class WeightedTenHotEncodeLayer(nn.Module):
 
 
     def forward(self,x):
-        hot_out = torch.zeros(x.size(0),x.size(1),self.num_tokens)
-        for N in range(x.size(0)):
-            for T in range(x.size(1)):
+        assert x.dim() == 2 or x.dim() == 3 #xの次元数が2か3であることを確認
+        if x.dim() == 2:
+            hot_out = torch.zeros(x.size(0),self.num_tokens)
+            for N in range(x.size(0)):
                 weight=1.0
-                for F in x[N,T]:
-                    hot_out[N,T,F.long()]=weight
+                for F in x[N]:
+                    hot_out[N,F.long()]=weight
                     weight -= 0.1
-        return hot_out.to(self.device)
+            return hot_out.to(self.device)
+
+        if x.dim() == 3:
+            hot_out = torch.zeros(x.size(0),x.size(1),self.num_tokens)
+            for N in range(x.size(0)):
+                for T in range(x.size(1)):
+                    weight=1.0
+                    for F in x[N,T]:
+                        hot_out[N,T,F.long()]=weight
+                        weight -= 0.1
+
+            return hot_out.to(self.device)
 
 
 #文字(インデックス化された状態)をベクトルに埋め込む (特徴量が5*10=50次元)
