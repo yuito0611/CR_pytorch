@@ -6,7 +6,7 @@ from torch import optim
 from torch.utils.data import DataLoader
 from CharToIndex import CharToIndex
 from MyDatasets import Cross_Validation
-from MyDatasets import BaseDataset_set5 as MyDataset
+from MyDatasets import BaseDataset_set7 as MyDataset
 from MyCustomLayer import TenHotEncodeLayer
 import torch.nn.functional as F
 
@@ -255,11 +255,11 @@ for i in range(k_num):
 
         if epoch%10==0:
             print(f'\r epoch:[{epoch:3}/{epochs}]| {timeSince(start)}')
-            print(f'   Detector| loss:{d_loss:.5}, accu:{d_accu:.5}, val_accu:{d_val_accu:.5}')
-            print(f'   Proof   | loss:{p_loss:.5}, accu:{p_accu:.5}, val_accu:{p_val_accu:.5}')
+            print(f'  Detector| loss:{d_loss:.5}, accu:{d_accu:.5}, val_accu:{d_val_accu:.5}')
+            print(f'  Proof   | loss:{p_loss:.5}, accu:{p_accu:.5}, val_accu:{p_val_accu:.5}')
             text_file.write(f'\r epoch:[{epoch:3}/{epochs}]\n')
-            text_file.write(f'   Detector| loss:{d_loss:.5}, accu:{d_accu:.5}, val_accu:{d_val_accu:.5}\n')
-            text_file.write(f'   Proof   | loss:{p_loss:.5}, accu:{p_accu:.5}, val_accu:{p_val_accu:.5}\n')
+            text_file.write(f'  Detector| loss:{d_loss:.5}, accu:{d_accu:.5}, val_accu:{d_val_accu:.5}\n')
+            text_file.write(f'  Proof   | loss:{p_loss:.5}, accu:{p_accu:.5}, val_accu:{p_val_accu:.5}\n')
             start = time.time() #開始時間の設定
 
     #学習結果の表示

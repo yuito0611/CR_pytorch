@@ -1,0 +1,14 @@
+クロスバリデーションでk毎のOCRの第一候補の正答率を調べた
+Cross Validation: k=[1/10]  accuracy:0.8169291 0.8308424
+Cross Validation: k=[2/10]  accuracy:0.8379265 0.841712
+Cross Validation: k=[3/10]  accuracy:0.8740157 0.8851902
+Cross Validation: k=[4/10]  accuracy:0.8510499 0.8695652
+Cross Validation: k=[5/10]  accuracy:0.7919948 0.8002717
+Cross Validation: k=[6/10]  accuracy:0.7395013  0.7357337
+Cross Validation: k=[7/10]  accuracy:0.9068241  0.9116848
+Cross Validation: k=[8/10]  accuracy:0.8884514  0.9334239
+Cross Validation: k=[9/10]  accuracy:0.8740157  0.8940217
+Cross Validation: k=[10/10]  accuracy:0.9074803 0.9313859
+0.8169291338582677, 0.8379265091863517, 0.8740157480314961, 0.8510498687664042, 0.791994750656168, 0.739501312335958, 0.9068241469816273, 0.8884514435695539, 0.8740157480314961, 0.90748031496063
+平均: 0.848818898
+0.86338315
