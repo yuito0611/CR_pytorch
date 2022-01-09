@@ -6,8 +6,8 @@ from torch import optim
 from torch.utils.data import DataLoader
 from CharToIndex import CharToIndex
 from MyDatasets import Cross_Validation
-from MyDatasets import BaseDataset_set7 as MyDataset
-from MyCustomLayer import TenHotEncodeLayer
+from MyDatasets import BaseDataset_set3 as MyDataset
+from MyCustomLayer import WeightedTenHotEncodeLayer
 import torch.nn.functional as F
 
 
@@ -163,7 +163,7 @@ def timeSince(since):
 class Detector(nn.Module):
   def __init__(self,encode_size):
     super(Detector, self).__init__()
-    self.encoder = TenHotEncodeLayer(encode_size)
+    self.encoder = WeightedTenHotEncodeLayer(encode_size)
     self.fc1 = nn.Linear(encode_size, 128)
     self.fc2 = nn.Linear(128, 2)
     self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -187,7 +187,7 @@ class Proofreader(nn.Module):
         self.n_layers  = n_layers
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-        self.encoder = TenHotEncodeLayer(output_size)
+        self.encoder = WeightedTenHotEncodeLayer(output_size)
         self.rnn = nn.RNN(output_size, self.hidden_dim, batch_first=True,bidirectional=True)
         self.fc = nn.Linear(self.hidden_dim*2, output_size)
         self.dropout = torch.nn.Dropout(p=0.5)
