@@ -1,7 +1,32 @@
 NNによる検出器の正読、誤読判定において閾値を変化させることでRecall,Precisionがどう変化するのかを調べた
 
+〇閾値: 0.1
+confusion matrix: tensor([[ 113044.,  109756.],
+        [ 149759., 1099441.]])
+recall_posi:0.8801160454750061
+precision_posi:0.9092323184013367
+recall_neg:0.5073788166046143
+precision_neg:0.43014729022979736
+
+〇閾値: 0.2
+confusion matrix: tensor([[ 104889.,  117911.],
+        [ 121413., 1127787.]])
+recall_posi:0.9028074145317078
+precision_posi:0.9053454399108887
+recall_neg:0.4707764685153961
+precision_neg:0.4634912610054016
+
+〇閾値: 0.3
+confusion matrix: tensor([[  97718.,  125082.],
+        [ 107409., 1141791.]])
+recall_posi:0.9140177965164185
+precision_posi:0.9012671113014221
+recall_neg:0.4385906755924225
+precision_neg:0.47637805342674255
+
 〇閾値: 0.5
 recall_posi:0.9285975024015369
 precision_posi:0.8969632486041058
 recall_neg:0.4019165170556553
 precision_neg:0.5009818566321478
+
