@@ -48,9 +48,13 @@ class BinaryClassDataset(torch.utils.data.Dataset):
 
 
 
-chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
+# chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
+# file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki.npy"
+
+chars_file_path = r"data\tegaki_katsuji\all_chars_3812.npy"
+file_path = r"data\tegaki_katsuji\tegaki.npy"
+
 tokens = CharToIndex(chars_file_path)
-file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki.npy"
 data = np.load(file_path,allow_pickle=True)
 
 EMBEDDING_DIM = 10
@@ -141,7 +145,7 @@ def train(model,train_dataloader,learning_rate=0.001):
     return loss_result,accuracy_result
 
 def eval(model,valid_dataloader,is_show_detail=False):
-    THRESHOLD = 0.5
+    THRESHOLD = 0.1
     accuracy = 0
     batch_size = next(iter(valid_dataloader))[0].size(0)
     confusion_matrix = torch.zeros(2,2)
@@ -233,6 +237,7 @@ for i in range(k_num):
     final_accuracies.append(acc_record[-1])
     final_losses.append(loss_record[-1])
 print('======================================================')
+print('Detector THE Compare Threshold: 0.1')
 print(f'accuracies: {final_accuracies}')
 print(f'losses: {final_losses}')
 
