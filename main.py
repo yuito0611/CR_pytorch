@@ -11,9 +11,14 @@ from MyCustomLayer import TenHotEncodeLayer
 import torch.nn.functional as F
 
 
-chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
+# chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
+chars_file_path = r"data\tegaki_katsuji\all_chars_3812.npy" 
+
+
 tokens = CharToIndex(chars_file_path)
-file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki.npy"
+# file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki.npy"
+file_path = r"data\tegaki_katsuji\tegaki.npy"
+
 data = np.load(file_path,allow_pickle=True)
 
 EMBEDDING_DIM = 10
