@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from CharToIndex import CharToIndex
-from DistancedDatasets import Distanced_TenHot_Dataset_sest5 as MyDataset
+from DistancedDatasets import Distanced_TenHot_Dataset_sest7 as MyDataset
 from MyDatasets import Cross_Validation
 from MyCustomLayer import WeightedTenHotEncodeLayer
 
@@ -16,14 +16,14 @@ import time
 import math
 
 
-# chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
-# tokens = CharToIndex(chars_file_path)
-# file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki.npy"
-# data = np.load(file_path,allow_pickle=True)
-chars_file_path = r"data\tegaki_katsuji\all_chars_3812.npy"
+chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
 tokens = CharToIndex(chars_file_path)
-file_path = r"data\tegaki_katsuji\tegaki_distance.npz"
+file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki_distance.npz"
 data = np.load(file_path,allow_pickle=True)
+# chars_file_path = r"data\tegaki_katsuji\all_chars_3812.npy"
+# tokens = CharToIndex(chars_file_path)
+# file_path = r"data\tegaki_katsuji\tegaki_distance.npz"
+# data = np.load(file_path,allow_pickle=True)
 
 EMBEDDING_DIM = 10
 HIDDEN_SIZE = 128
@@ -176,13 +176,14 @@ for i in range(k_num):
         loss,acc = train(model,train_dataloader,learning_rate=0.01)
 
         valid_acc = eval(model,valid_dataloader)
+
         loss_record.append(loss)
         acc_record.append(valid_acc)
-
 
         if epoch%10==0:
             print(f'\repoch:[{epoch:3}/{epochs}] | {timeSince(start)} - loss: {loss:.7},  accuracy: {acc:.7},  valid_acc: {valid_acc:.7}')
             text_file.write(f'\repoch:[{epoch:3}/{epochs}] | {timeSince(start)} - loss: {loss:.7},  accuracy: {acc:.7},  valid_acc: {valid_acc:.7}')
+
             start = time.time() #開始時間の設定
 
     acc,correct_char=get_correct_char(model,valid_dataloader,correct_char)
