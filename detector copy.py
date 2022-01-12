@@ -48,11 +48,11 @@ class BinaryClassDataset(torch.utils.data.Dataset):
 
 
 
-# chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
-# file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki.npy"
+chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
+file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki.npy"
 
-chars_file_path = r"data\tegaki_katsuji\all_chars_3812.npy"
-file_path = r"data\tegaki_katsuji\tegaki.npy"
+# chars_file_path = r"data\tegaki_katsuji\all_chars_3812.npy"
+# file_path = r"data\tegaki_katsuji\tegaki.npy"
 
 tokens = CharToIndex(chars_file_path)
 data = np.load(file_path,allow_pickle=True)
@@ -154,9 +154,8 @@ def eval(model,valid_dataloader,threshold_value,is_show_detail=False):
     for x,y in valid_dataloader:
         output = model(x)
         output = F.softmax(output,dim=1)
-        compare = (output.data > threshold).float()
-        prediction = compare.data.max(1)[1] #予測結果
-
+        compare = (output.data > threshold).long()
+        prediction = compare[:,1] #予測結果
         accuracy += prediction.eq(y.data).sum().item()/batch_size
 
         if is_show_detail:
@@ -223,8 +222,8 @@ def Examination_Threshold_Value(threshold_value):
     print(f'precision_neg:{precision_neg}')
 
 if __name__ == '__main__':
-    for i in range(1,10):
-        threshold_value = i*0.1
+    for i in range(90,100):
+        threshold_value = i*0.01
         start = time.time() #開始時間の設定
         Examination_Threshold_Value(threshold_value)
         print('実行時間： ',timeSince(start),'\n\n')
