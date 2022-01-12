@@ -290,8 +290,8 @@ for i in range(k_num):
         d_val_accu,p_val_accu = eval(detector,proofreader,valid_dataloader)
 
 
-        print(f'\n d_loss:{d_loss:.5}, d_accu:{d_accu:.5}, d_val_accu:{d_val_accu:.5}')
-        print(f' p_loss:{p_loss:.5}, p_accu:{p_accu:.5}, p_val_accu:{p_val_accu:.5}')
+        # print(f'\n d_loss:{d_loss:.5}, d_accu:{d_accu:.5}, d_val_accu:{d_val_accu:.5}')
+        # print(f' p_loss:{p_loss:.5}, p_accu:{p_accu:.5}, p_val_accu:{p_val_accu:.5}')
 
         if epoch%10==0:
             print(f'\r epoch:[{epoch:3}/{epochs}]| {timeSince(start)}')

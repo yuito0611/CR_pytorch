@@ -5,25 +5,22 @@ import torch.nn as nn
 from torch import optim
 from torch.utils.data import DataLoader
 import numpy as np
-import matplotlib.pyplot as plt
 
 from CharToIndex import CharToIndex
-from DistancedDatasets import Distanced_TenHot_Dataset_sest7 as MyDataset
+from DistancedDatasets import Distanced_TenHot_Dataset_sest5 as MyDataset
 from MyDatasets import Cross_Validation
-from MyCustomLayer import WeightedTenHotEncodeLayer
 
 import time
 import math
 
 
 chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
-tokens = CharToIndex(chars_file_path)
-file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki_distance.npz"
-data = np.load(file_path,allow_pickle=True)
+datas_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki_distance2.npz"
 # chars_file_path = r"data\tegaki_katsuji\all_chars_3812.npy"
-# tokens = CharToIndex(chars_file_path)
 # file_path = r"data\tegaki_katsuji\tegaki_distance.npz"
-# data = np.load(file_path,allow_pickle=True)
+
+tokens = CharToIndex(chars_file_path)
+data = np.load(datas_file_path,allow_pickle=True)
 
 EMBEDDING_DIM = 10
 HIDDEN_SIZE = 128
@@ -89,7 +86,6 @@ def eval(model,valid_dataloader,is_show_ans_pred=False):
     return accuracy/len(valid_dataloader)
 
 
-#hot encode用
 class Proofreader(nn.Module):
     def __init__(self, input_size, hidden_dim, output_size,n_layers):
         super(Proofreader, self).__init__()
@@ -146,7 +142,8 @@ cross_validation = Cross_Validation(tegaki_dataset)
 k_num = cross_validation.k_num #デフォルトは10
 # k_num = 1
 
-text_file = open("output.txt","wt") #結果の保存
+result_txt_file_path = r"/net/nfs2/export/home/ohno/CR_pytorch/results/Proofreader/Proofreader_DTHE2.txt"
+text_file = open(result_txt_file_path,"a") #結果の保存
 
 
 ##学習
@@ -162,6 +159,7 @@ for i in range(k_num):
     # model.load_state_dict(torch.load("data/tegaki_katsuji/pre_trained_model.pth"))
 
     epochs = 100
+    # epochs = 10
     acc_record=[]
     loss_record=[]
     start = time.time() #開始時間の設定
@@ -177,13 +175,13 @@ for i in range(k_num):
 
         valid_acc = eval(model,valid_dataloader)
 
-        loss_record.append(loss)
-        acc_record.append(valid_acc)
+
 
         if epoch%10==0:
             print(f'\repoch:[{epoch:3}/{epochs}] | {timeSince(start)} - loss: {loss:.7},  accuracy: {acc:.7},  valid_acc: {valid_acc:.7}')
             text_file.write(f'\repoch:[{epoch:3}/{epochs}] | {timeSince(start)} - loss: {loss:.7},  accuracy: {acc:.7},  valid_acc: {valid_acc:.7}')
-
+            loss_record.append(loss)
+            acc_record.append(valid_acc)
             start = time.time() #開始時間の設定
 
     acc,correct_char=get_correct_char(model,valid_dataloader,correct_char)

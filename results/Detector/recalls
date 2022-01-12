@@ -1,0 +1,183 @@
+NNによる検出器の正読、誤読判定において閾値を変化させることでRecall,Precisionがどう変化するのかを調べた
+条件：TenHotEncode、NN2層
+
+
+結果:閾値は0.99まで引き上げてもPrecisionに大きな工場は得られなかった
+
+Threshold:  0.1
+confusion matrix: tensor([[  71657.,  151143.],
+        [  61562., 1187638.]])
+recall_posi:0.950718879699707
+precision_posi:0.8871040344238281
+recall_neg:0.32162028551101685
+precision_neg:0.537888765335083
+実行時間：  107m 10s
+
+
+Threshold:  0.2
+confusion matrix: tensor([[  77687.,  145113.],
+        [  70968., 1178232.]])
+recall_posi:0.943189263343811
+precision_posi:0.8903437852859497
+recall_neg:0.3486849069595337
+precision_neg:0.5225992798805237
+実行時間：  116m 37s
+
+
+Threshold:  0.3
+confusion matrix: tensor([[  80066.,  142734.],
+        [  73913., 1175287.]])
+recall_posi:0.94083172082901
+precision_posi:0.8917058110237122
+recall_neg:0.3593626618385315
+precision_neg:0.5199800133705139
+実行時間：  105m 29s
+
+Threshold:  0.4
+confusion matrix: tensor([[  85394.,  137406.],
+        [  82757., 1166443.]])
+recall_posi:0.9337520003318787
+precision_posi:0.894615113735199
+recall_neg:0.38327649235725403
+precision_neg:0.507841169834137
+実行時間：  43m 19s
+
+
+Threshold:  0.5
+confusion matrix: tensor([[  89455.,  133345.],
+        [  88012., 1161188.]])
+recall_posi:0.9295452833175659
+precision_posi:0.8969937562942505
+recall_neg:0.4015035927295685
+precision_neg:0.5040655732154846
+実行時間：  43m 7s
+
+
+Threshold:  0.6
+confusion matrix: tensor([[  92203.,  130597.],
+        [  97195., 1152005.]])
+recall_posi:0.9221941828727722
+precision_posi:0.8981781005859375
+recall_neg:0.4138375222682953
+precision_neg:0.48682141304016113
+実行時間：  43m 13s
+
+
+Threshold:  0.7
+confusion matrix: tensor([[  99132.,  123668.],
+        [ 106815., 1142385.]])
+recall_posi:0.9144932627677917
+precision_posi:0.9023200273513794
+recall_neg:0.44493716955184937
+precision_neg:0.48134714365005493
+実行時間：  43m 8s
+
+
+Threshold:  0.8
+confusion matrix: tensor([[ 104780.,  118020.],
+        [ 122370., 1126830.]])
+recall_posi:0.9020413160324097
+precision_posi:0.9051933884620667
+recall_neg:0.4702872633934021
+precision_neg:0.46128109097480774
+実行時間：  43m 8s
+
+
+Threshold:  0.9
+confusion matrix: tensor([[ 113488.,  109312.],
+        [ 150817., 1098383.]])
+recall_posi:0.8792691230773926
+precision_posi:0.9094870686531067
+recall_neg:0.5093716382980347
+precision_neg:0.42938271164894104
+実行時間：  43m 7s
+
+
+Threshold:  0.91
+confusion matrix: tensor([[ 112784.,  110016.],
+        [ 151021., 1098179.]])
+recall_posi:0.879105806350708
+precision_posi:0.9089418649673462
+recall_neg:0.5062118768692017
+precision_neg:0.42752790451049805
+実行時間：  43m 31s
+
+
+Threshold:  0.92
+confusion matrix: tensor([[ 117400.,  105400.],
+        [ 162917., 1086283.]])
+recall_posi:0.8695829510688782
+precision_posi:0.911553680896759
+recall_neg:0.5269299745559692
+precision_neg:0.418811559677124
+実行時間：  43m 33s
+
+
+Threshold:  0.93
+confusion matrix: tensor([[ 118127.,  104673.],
+        [ 163061., 1086139.]])
+recall_posi:0.8694676756858826
+precision_posi:0.9120994806289673
+recall_neg:0.5301929712295532
+precision_neg:0.4200997054576874
+実行時間：  43m 35s
+
+
+
+Threshold:  0.9400000000000001
+confusion matrix: tensor([[ 120287.,  102513.],
+        [ 173649., 1075551.]])
+recall_posi:0.8609918355941772
+precision_posi:0.9129818081855774
+recall_neg:0.5398877859115601
+precision_neg:0.40922853350639343
+実行時間：  43m 34s
+
+
+Threshold:  0.9500000000000001
+confusion matrix: tensor([[ 122187.,  100613.],
+        [ 180948., 1068252.]])
+recall_posi:0.8551489114761353
+precision_posi:0.9139224886894226
+recall_neg:0.5484156012535095
+precision_neg:0.4030778408050537
+実行時間：  43m 33s
+
+
+Threshold:  0.96
+confusion matrix: tensor([[ 124028.,   98772.],
+        [ 195834., 1053366.]])
+recall_posi:0.8432324528694153
+precision_posi:0.9142706990242004
+recall_neg:0.5566786527633667
+precision_neg:0.3877547085285187
+実行時間：  43m 34s
+
+
+Threshold:  0.97
+confusion matrix: tensor([[ 128556.,   94244.],
+        [ 210299., 1038901.]])
+recall_posi:0.8316530585289001
+precision_posi:0.9168297052383423
+recall_neg:0.5770018100738525
+precision_neg:0.37938350439071655
+実行時間：  43m 34s
+
+
+Threshold:  0.98
+confusion matrix: tensor([[ 132576.,   90224.],
+        [ 231156., 1018044.]])
+recall_posi:0.814956784248352
+precision_posi:0.9185900688171387
+recall_neg:0.5950449109077454
+precision_neg:0.3644881248474121
+実行時間：  97m 35s
+
+Threshold:  0.99
+confusion matrix: tensor([[138303.,  84497.],
+        [278876., 970324.]])
+recall_posi:0.7767563462257385
+precision_posi:0.9198944568634033
+recall_neg:0.6207495331764221
+precision_neg:0.33151957392692566
+実行時間：  141m 20s

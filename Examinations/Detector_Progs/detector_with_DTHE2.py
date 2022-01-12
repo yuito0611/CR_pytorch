@@ -56,7 +56,7 @@ class Distanced_TenHot_Dataset_set(torch.utils.data.Dataset):
 
 chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
 tokens = CharToIndex(chars_file_path)
-data_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki_distance.npz"
+data_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki_distance2.npz"
 data = np.load(data_file_path,allow_pickle=True)
 
 EMBEDDING_DIM = 10
@@ -213,7 +213,7 @@ def Examination_Threshold_Value(threshold_value):
 
 
 if __name__ == '__main__':
-    result_txt_path = r"/net/nfs2/export/home/ohno/CR_pytorch/results/detector/detector_with_DTHE.txt"
+    result_txt_path = r"/net/nfs2/export/home/ohno/CR_pytorch/results/Detector/detector_with_DTHE2.txt"
     with open(result_txt_path,mode='a') as f:
         for i in range(90,100):
             threshold_value = i*0.01
