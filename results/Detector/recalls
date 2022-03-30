@@ -2,7 +2,7 @@ NNによる検出器の正読、誤読判定において閾値を変化させる
 条件：TenHotEncode、NN2層
 
 
-結果:閾値は0.99まで引き上げてもPrecisionに大きな工場は得られなかった
+結果:閾値は0.99まで引き上げてもPrecisionに大きな向上は得られなかった
 
 Threshold:  0.1
 confusion matrix: tensor([[  71657.,  151143.],

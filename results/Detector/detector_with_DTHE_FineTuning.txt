@@ -1,0 +1,54 @@
+Threshold: 0.5
+
+ confusion matrix: tensor([[ 106298.,  118802.],
+        [  99920., 1146980.]])
+ recall_posi:0.9198652505874634
+ precision_posi:0.9061433672904968
+ recall_neg:0.4722256660461426
+ precision_neg:0.5154642462730408
+
+
+Threshold: 0.9
+
+ confusion matrix: tensor([[ 122784.,  102316.],
+        [ 143394., 1103506.]])
+ recall_posi:0.8849995732307434
+ precision_posi:0.9151483178138733
+ recall_neg:0.5454642176628113
+ precision_neg:0.4612852931022644
+
+
+Threshold: 0.99
+
+ confusion matrix: tensor([[ 134825.,   90275.],
+        [ 216780., 1030120.]])
+ recall_posi:0.826144814491272
+ precision_posi:0.9194257259368896
+ recall_neg:0.5989560484886169
+ precision_neg:0.38345587253570557
+
+Threshold: 0.999
+
+ confusion matrix: tensor([[144821.,  80279.],
+        [319301., 927599.]])
+ recall_posi:0.7439241409301758
+ precision_posi:0.9203484654426575
+ recall_neg:0.6433629393577576
+ precision_neg:0.31203219294548035
+
+Threshold:  0.9999
+confusion matrix: tensor([[152341.,  72759.],
+        [414505., 832395.]])
+recall_posi:0.6675716042518616
+precision_posi:0.9196169972419739
+recall_neg:0.6767703294754028
+precision_neg:0.26875200867652893
+
+Threshold: 1.0
+
+ confusion matrix: tensor([[152341.,  72759.],
+        [414505., 832395.]])
+ recall_posi:0.6675716042518616
+ precision_posi:0.9196169972419739
+ recall_neg:0.6767703294754028
+ precision_neg:0.26875200867652893

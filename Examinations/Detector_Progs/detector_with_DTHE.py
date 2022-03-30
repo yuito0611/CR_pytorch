@@ -176,7 +176,9 @@ def Examination_Threshold_Value(threshold_value):
         train_dataloader=DataLoader(train_dataset,batch_size=BATCH_SIZE,shuffle=True,drop_last=True) #訓練データのみシャッフル
         valid_dataloader=DataLoader(valid_dataset,batch_size=BATCH_SIZE,shuffle=False,drop_last=True)
         model = Net(encode_size=len(tokens))
-
+        pretrained_model_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/pre_trained_detector_distance.pth"
+        model.load_state_dict(torch.load(pretrained_model_path))
+        print('loaded pretrained model')
         epochs = 100
         # epochs = 1
 
@@ -213,19 +215,19 @@ def Examination_Threshold_Value(threshold_value):
 
 
 if __name__ == '__main__':
-    result_txt_path = r"/net/nfs2/export/home/ohno/CR_pytorch/results/Detector/detector_with_DTHE.txt"
+    result_txt_path = r"/net/nfs2/export/home/ohno/CR_pytorch/results/Detector/detector_with_DTHE_FineTuning.txt"
     with open(result_txt_path,mode='a') as f:
-        for i in range(90,100):
-            threshold_value = i*0.01
+        for i in range(1):
+            threshold_value = 0.9999
             start = time.time() #開始時間の設定
             confusion_matrix,recall_posi,precision_posi,recall_neg,precision_neg = Examination_Threshold_Value(threshold_value)
 
-            f.write(f'Threshold: {threshold_value:.3}')
-            f.write(f' confusion matrix: {confusion_matrix}')
-            f.write(f' recall_posi:{recall_posi}')
-            f.write(f' precision_posi:{precision_posi}')
-            f.write(f' recall_neg:{recall_neg}')
-            f.write(f' precision_neg:{precision_neg}')
+            f.write(f'Threshold: {threshold_value:.3}\n\n')
+            f.write(f' confusion matrix: {confusion_matrix}\n')
+            f.write(f' recall_posi:{recall_posi}\n')
+            f.write(f' precision_posi:{precision_posi}\n')
+            f.write(f' recall_neg:{recall_neg}\n')
+            f.write(f' precision_neg:{precision_neg}\n')
             print('実行時間： ',timeSince(start),'\n\n')
 
 

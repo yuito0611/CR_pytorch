@@ -1,0 +1,7 @@
+Threshold: 1.0
+confusion matrix: tensor([[192070.,  33030.],
+        [921645., 325255.]])
+recall_posi:0.2608509063720703
+precision_posi:0.9078108072280884
+recall_neg:0.8532652258872986
+precision_neg:0.17245884239673615

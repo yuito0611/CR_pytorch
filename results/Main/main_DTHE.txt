@@ -1,4 +1,4 @@
-
+K=1
  epoch:[ 10/100]
   Detector| loss:0.097672, accu:0.96134, val_accu:0.86005
   Proof   | loss:0.88097, accu:0.86397, val_accu:0.80707
@@ -41,6 +41,7 @@
  examin accuracy:0.8559783
 
 
+K=2
  epoch:[ 10/100]
   Detector| loss:0.097211, accu:0.96297, val_accu:0.84239
   Proof   | loss:1.0379, accu:0.85375, val_accu:0.79144
@@ -83,6 +84,7 @@
  examin accuracy:0.8566576
 
 
+K=3
  epoch:[ 10/100]
   Detector| loss:0.10145, accu:0.95757, val_accu:0.88383
   Proof   | loss:0.80506, accu:0.86974, val_accu:0.82269
@@ -125,6 +127,7 @@
  examin accuracy:0.8933424
 
 
+K=4
  epoch:[ 10/100]
   Detector| loss:0.10056, accu:0.96031, val_accu:0.88315
   Proof   | loss:0.73323, accu:0.87678, val_accu:0.77106
@@ -167,6 +170,7 @@
  examin accuracy:0.8641304
 
 
+K=5
  epoch:[ 10/100]
   Detector| loss:0.094351, accu:0.96394, val_accu:0.79688
   Proof   | loss:0.88047, accu:0.86567, val_accu:0.77582
@@ -209,6 +213,7 @@
  examin accuracy:0.8240489
 
 
+K=6
  epoch:[ 10/100]
   Detector| loss:0.094893, accu:0.96357, val_accu:0.7731
   Proof   | loss:0.74216, accu:0.87789, val_accu:0.70584
@@ -251,6 +256,7 @@
  examin accuracy:0.7615489
 
 
+K=7
  epoch:[ 10/100]
   Detector| loss:0.10155, accu:0.96075, val_accu:0.92595
   Proof   | loss:0.96394, accu:0.8493, val_accu:0.87432
@@ -293,6 +299,7 @@
  examin accuracy:0.9300272
 
 
+K=8
  epoch:[ 10/100]
   Detector| loss:0.095154, accu:0.96157, val_accu:0.9375
   Proof   | loss:1.0426, accu:0.84886, val_accu:0.88451
@@ -335,6 +342,7 @@
  examin accuracy:0.9334239
 
 
+K=9
  epoch:[ 10/100]
   Detector| loss:0.097362, accu:0.96357, val_accu:0.91168
   Proof   | loss:0.99105, accu:0.85649, val_accu:0.87704
@@ -377,6 +385,7 @@
  examin accuracy:0.9232337
 
 
+K=10
  epoch:[ 10/100]
   Detector| loss:0.10167, accu:0.95942, val_accu:0.91916
   Proof   | loss:1.0247, accu:0.84975, val_accu:0.875

@@ -66,6 +66,7 @@ class CharToIndex():
             print("\033[31m"+"ERROR: No such char -->"+f" \033[0m{char}")
             return 0
 
+
     def decoded_table(self):
         for i,item in enumerate(self.table.keys()):
             print(f'\'{item.decode()}\':{i}',end=', ')

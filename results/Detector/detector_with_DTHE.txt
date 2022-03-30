@@ -1,0 +1,93 @@
+NNによる検出器の正読、誤読判定において閾値を変化させることでRecall,Precisionがどう変化するのかを調べた
+条件：行毎の最大値、最小値で正規化したDTHE、NN2層
+
+
+
+Threshold: 0.9
+confusion matrix: tensor([[ 130436.,   94664.],
+        [ 135393., 1111507.]])
+        recall_posi:0.8914163112640381
+        precision_posi:0.9215169548988342
+        recall_neg:0.5794579982757568
+        precision_neg:0.4906763434410095
+
+
+Threshold: 0.91
+        confusion matrix: tensor([[ 130452.,   94648.],
+        [ 139491., 1107409.]])
+        recall_posi:0.8881297707557678
+        precision_posi:0.9212616086006165
+        recall_neg:0.5795291066169739
+        precision_neg:0.48325756192207336
+
+
+Threshold: 0.92
+        confusion matrix: tensor([[ 130316.,   94784.],
+        [ 143977., 1102923.]])
+        recall_posi:0.8845320343971252
+        precision_posi:0.9208621382713318
+        recall_neg:0.5789248943328857
+        precision_neg:0.47509780526161194
+
+
+Threshold: 0.93
+        confusion matrix: tensor([[ 131916.,   93184.],
+        [ 149695., 1097205.]])
+        recall_posi:0.8799462914466858
+        precision_posi:0.9217197299003601
+        recall_neg:0.5860328674316406
+        precision_neg:0.4684334099292755
+
+
+Threshold: 0.94
+        confusion matrix: tensor([[ 134348.,   90752.],
+        [ 160059., 1086841.]])
+        recall_posi:0.8716344237327576
+        precision_posi:0.922934353351593 r
+        ecall_neg:0.5968369841575623 p
+        recision_neg:0.45633426308631897
+
+
+Threshold: 0.95
+        confusion matrix: tensor([[ 137120.,   87980.],
+        [ 168329., 1078571.]])
+        recall_posi:0.8650019764900208
+        precision_posi:0.9245811104774475
+        recall_neg:0.6091514825820923
+        precision_neg:0.44891291856765747
+
+
+Threshold: 0.96
+        confusion matrix: tensor([[ 138626.,   86474.],
+        [ 178374., 1068526.]])
+        recall_posi:0.8569460511207581
+        precision_posi:0.9251307249069214
+        recall_neg:0.6158418655395508
+        precision_neg:0.4373059868812561
+
+
+Threshold: 0.97
+        confusion matrix: tensor([[ 141616.,   83484.],
+        [ 197440., 1049460.]])
+        recall_posi:0.8416553139686584
+        precision_posi:0.9263123273849487
+        recall_neg:0.6291248202323914
+        precision_neg:0.4176773130893707
+
+
+Threshold: 0.98
+        confusion matrix: tensor([[ 145914.,   79186.],
+        [ 225397., 1021503.]])
+        recall_posi:0.8192340731620789
+        precision_posi:0.9280577898025513
+        recall_neg:0.64821857213974 pr
+        ecision_neg:0.3929697871208191
+
+
+Threshold: 0.99
+        confusion matrix: tensor([[149363.,  75737.],
+        [268671., 978229.]])
+        recall_posi:0.7845288515090942
+        precision_posi:0.9281409382820129
+        recall_neg:0.6635406613349915
+        precision_neg:0.35729870200157166

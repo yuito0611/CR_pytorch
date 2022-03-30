@@ -1,4 +1,3 @@
-
 import torch
 import numpy as np
 import torch.nn as nn
@@ -162,15 +161,18 @@ def examination(detector,proofreader,valid_dataloader,show_out=False):
     batch_size = next(iter(valid_dataloader))[0].size(0)
 
     runnning_accu = 0
+    threshold = torch.full((batch_size,2),0.9).to(device)
 
     detector.eval()
     proofreader.eval()
 
 
-    for detec_x,detec_y,proof_x,proof_y,ocr_pred in valid_dataloader:
+    for detec_x,_,proof_x,proof_y,ocr_pred in valid_dataloader:
         #検出器の処理
         d_output = detector(detec_x)
-        flg_ocr = d_output.data.max(1)[1] #ocrの出力を使用するか
+        d_output = F.softmax(d_output,dim=1)
+        compare_threshold = (d_output > threshold).long()
+        flg_ocr = compare_threshold[:,1] #ocrの出力を使用するか
         ocr_pred.mul_(flg_ocr)
 
         #修正器の処理
@@ -220,8 +222,6 @@ class Detector(nn.Module):
     return x
 
 
-
-
 class Proofreader(nn.Module):
     def __init__(self, input_size, hidden_dim, output_size,n_layers):
         super(Proofreader, self).__init__()
@@ -251,7 +251,7 @@ class Proofreader(nn.Module):
         return out
 
 
-result_output_file_path = r"/net/nfs2/export/home/ohno/CR_pytorch/results/Main/main_DTHE.txt"
+result_output_file_path = r"/net/nfs2/export/home/ohno/CR_pytorch/results/Main/main_DTHE_FineTuning_threshold09.txt"
 text_file = open(result_output_file_path,"a") #結果の保存
 
 
@@ -259,26 +259,33 @@ cross_validation = Cross_Validation(tegaki_dataset)
 k_num = cross_validation.k_num #デフォルトは10
 # k_num=1
 
+acc_record = []
+d_acc_record=[]
+d_loss_record=[]
+p_acc_record=[]
+p_loss_record=[]
 
 ##学習
 for i in range(k_num):
     train_dataset,valid_dataset = cross_validation.get_datasets(k_idx=i)
 
     print(f'Cross Validation: k=[{i+1}/{k_num}]')
-    # text_file.write(f'Cross Validation: k=[{i+1}/{k_num}]\n')
+    text_file.write(f'Cross Validation: k=[{i+1}/{k_num}]\n')
 
     train_dataloader=DataLoader(train_dataset,batch_size=BATCH_SIZE,shuffle=True,drop_last=True) #訓練データのみシャッフル
     valid_dataloader=DataLoader(valid_dataset,batch_size=BATCH_SIZE,shuffle=False,drop_last=True)
     proofreader = Proofreader(VOCAB_SIZE, hidden_dim=HIDDEN_SIZE, output_size=VOCAB_SIZE, n_layers=1)
     detector = Detector(encode_size=len(tokens))
+    pretrained_proof_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/pre_trained_proof_distance.pth"
+    pretrained_detector_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/pre_trained_detector_distance.pth"
+
+    proofreader.load_state_dict(torch.load(pretrained_proof_path))
+    detector.load_state_dict(torch.load(pretrained_detector_path))
+
 
     epochs = 100
     # epochs = 10
-    d_acc_record=[]
-    d_loss_record=[]
-    p_acc_record=[]
-    p_loss_record=[]
-    acc_record = []
+
     start = time.time() #開始時間の設定
 
     for epoch in range(1,epochs+1):
@@ -286,12 +293,8 @@ for i in range(k_num):
         print(f'\r{epoch}', end='')
 
         d_loss,d_accu,p_loss,p_accu = train(detector,proofreader,train_dataloader,learning_rate=0.01)
-
         d_val_accu,p_val_accu = eval(detector,proofreader,valid_dataloader)
 
-
-        # print(f'\n d_loss:{d_loss:.5}, d_accu:{d_accu:.5}, d_val_accu:{d_val_accu:.5}')
-        # print(f' p_loss:{p_loss:.5}, p_accu:{p_accu:.5}, p_val_accu:{p_val_accu:.5}')
 
         if epoch%10==0:
             print(f'\r epoch:[{epoch:3}/{epochs}]| {timeSince(start)}')
@@ -300,39 +303,37 @@ for i in range(k_num):
             text_file.write(f'\r epoch:[{epoch:3}/{epochs}]\n')
             text_file.write(f'  Detector| loss:{d_loss:.5}, accu:{d_accu:.5}, val_accu:{d_val_accu:.5}\n')
             text_file.write(f'  Proof   | loss:{p_loss:.5}, accu:{p_accu:.5}, val_accu:{p_val_accu:.5}\n')
-            d_loss_record.append(d_loss)
-            d_acc_record.append(d_val_accu)
-            p_loss_record.append(p_loss)
-            p_acc_record.append(p_val_accu)
             start = time.time() #開始時間の設定
 
     #学習結果の表示
     accuracy = examination(detector,proofreader,valid_dataloader,show_out=False)
+
+    d_loss_record.append(d_loss)
+    d_acc_record.append(d_val_accu)
+    p_loss_record.append(p_loss)
+    p_acc_record.append(p_val_accu)
     acc_record.append(accuracy)
     print(f' examin accuracy:{acc_record[-1]:.7}\n\n')
     text_file.write(f' examin accuracy:{acc_record[-1]:.7}\n\n')
 
 
 print(f'=================================================')
-print(f'examin accuracies: {acc_record}')
-print(f'examin accu average: {np.mean(acc_record)}')
 print(f'Detector \nacc: {d_acc_record}')
 print(f'loss: {d_loss_record}')
 print(f'acc average: {np.mean(d_acc_record)}')
 print(f'Proof \nacc: {p_acc_record}')
 print(f'loss: {p_loss_record}')
-print(f'Examin\nacc average: {np.mean(p_acc_record)}')
-
+print(f'Examin \nacc: {acc_record}')
+print(f'accu average: {np.mean(acc_record)}')
 
 text_file.write(f'=================================================\n\n')
-text_file.write(f'examin accuracies: {acc_record}\n')
-text_file.write(f'examin accu average: {np.mean(acc_record)}\n')
 text_file.write(f'Detector \nacc: {d_acc_record}\n')
 text_file.write(f'loss: {d_loss_record}\n')
 text_file.write(f'acc average: {np.mean(d_acc_record)}\n')
 text_file.write(f'Proof \nacc: {p_acc_record}\n')
 text_file.write(f'loss: {p_loss_record}\n')
-text_file.write(f'Examin\nacc average: {np.mean(p_acc_record)}\n')
+text_file.write(f'Examin \nacc: {acc_record}\n')
+text_file.write(f'accu average: {np.mean(acc_record)}\n')
 
 text_file.close()
 

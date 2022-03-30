@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader
 import numpy as np
 
 from CharToIndex import CharToIndex
-from DistancedDatasets import Distanced_TenHot_Dataset_sest5 as MyDataset
+from DistancedDatasets import Distanced_TenHot_Dataset_set5 as MyDataset
 from MyDatasets import Cross_Validation
 
 import time
@@ -15,7 +15,7 @@ import math
 
 
 chars_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/all_chars_3812.npy"
-datas_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki_distance2.npz"
+datas_file_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/tegaki_distance.npz"
 # chars_file_path = r"data\tegaki_katsuji\all_chars_3812.npy"
 # file_path = r"data\tegaki_katsuji\tegaki_distance.npz"
 
@@ -142,7 +142,7 @@ cross_validation = Cross_Validation(tegaki_dataset)
 k_num = cross_validation.k_num #デフォルトは10
 # k_num = 1
 
-result_txt_file_path = r"/net/nfs2/export/home/ohno/CR_pytorch/results/Proofreader/Proofreader_DTHE2.txt"
+result_txt_file_path = r"/net/nfs2/export/home/ohno/CR_pytorch/results/Proofreader/Proofreader_FineTuning_lr_005.txt"
 text_file = open(result_txt_file_path,"a") #結果の保存
 
 
@@ -156,7 +156,9 @@ for i in range(k_num):
     train_dataloader=DataLoader(train_dataset,batch_size=BATCH_SIZE,shuffle=True,drop_last=True) #訓練データのみシャッフル
     valid_dataloader=DataLoader(valid_dataset,batch_size=BATCH_SIZE,shuffle=False,drop_last=True)
     model = Proofreader(VOCAB_SIZE, hidden_dim=HIDDEN_SIZE, output_size=VOCAB_SIZE, n_layers=1)
-    # model.load_state_dict(torch.load("data/tegaki_katsuji/pre_trained_model.pth"))
+    pretrained_model_path = "/net/nfs2/export/home/ohno/CR_pytorch/data/tegaki_katsuji/pre_trained_proof_distance.pth"
+    model.load_state_dict(torch.load(pretrained_model_path))
+    print('loaded pretrained model')
 
     epochs = 100
     # epochs = 10
@@ -171,7 +173,7 @@ for i in range(k_num):
         print('\r[{0}] {1}%'.format(pro_bar, i / 10 * 100.), end='')
 
 
-        loss,acc = train(model,train_dataloader,learning_rate=0.01)
+        loss,acc = train(model,train_dataloader,learning_rate=0.05)
 
         valid_acc = eval(model,valid_dataloader)
 

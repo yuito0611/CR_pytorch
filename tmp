@@ -1,0 +1,23 @@
+
+    # ##　事前学習
+    # katsuji_file_path = r"/net/nfs2/export/home/ohno/revise_misread/datas/chars_datas/katsuji_distance.npz"
+    # data_for_pretrain = np.load(katsuji_file_path,allow_pickle=True)
+    # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # dataset_for_pretrain = Dataset_For_Weighted_Feature(data_for_pretrain,tokens,N,device=device)
+    # dataloader_for_pretrain = DataLoader(dataset_for_pretrain,batch_size=BATCH_SIZE,shuffle=True,drop_last=True) #訓練データのみシャッフル
+    # dataloader_for_pretrain2 = DataLoader(dataset,batch_size=BATCH_SIZE,shuffle=True,drop_last=True) #訓練データのみシャッフル
+    # proofreader = Proofreader(input_length=N,input_size=VOCAB_SIZE, hidden_dim=HIDDEN_SIZE, output_size=VOCAB_SIZE, n_layers=1)
+
+    # epochs = 100
+    # for epoch in range(1,epochs+1):
+    #     #進捗表示
+    #     print(f'\r{epoch}', end='')
+    #     p_loss,p_accu = train(proofreader,dataloader_for_pretrain,learning_rate=0.01)
+
+    # epochs = 20
+    # for epoch in range(1,epochs+1):
+    #     #進捗表示
+    #     print(f'\r{epoch}', end='')
+    #     p_loss,p_accu = train(proofreader,dataloader_for_pretrain2,learning_rate=0.01)
+
+    # torch.save(proofreader.state_dict(), "/net/nfs2/export/home/ohno/revise_misread/datas/Learned_models/Weighted_Feature/pre_trained_proof")
