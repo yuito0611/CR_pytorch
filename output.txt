@@ -1,0 +1,31 @@
+Cross Validation: k=[1/1]
+ epoch:[ 10/100]
+  Detector| loss:0.45087, accu:0.82153, val_accu:7.5652
+  Proof   | loss:0.51357, accu:0.94128, val_accu:8.8057
+ epoch:[ 20/100]
+  Detector| loss:0.46073, accu:0.8402, val_accu:7.7418
+  Proof   | loss:0.49135, accu:0.9472, val_accu:8.8417
+ epoch:[ 30/100]
+  Detector| loss:0.45147, accu:0.84634, val_accu:7.7826
+  Proof   | loss:0.48082, accu:0.94683, val_accu:8.8478
+ epoch:[ 40/100]
+  Detector| loss:0.45244, accu:0.8479, val_accu:7.7962
+  Proof   | loss:0.4496, accu:0.94979, val_accu:8.8546
+ epoch:[ 50/100]
+  Detector| loss:0.45261, accu:0.84619, val_accu:7.7887
+  Proof   | loss:0.44947, accu:0.95061, val_accu:8.8499
+ epoch:[ 60/100]
+  Detector| loss:0.44986, accu:0.84945, val_accu:7.7833
+  Proof   | loss:0.48115, accu:0.95157, val_accu:8.8546
+ epoch:[ 70/100]
+  Detector| loss:0.44684, accu:0.84805, val_accu:7.7921
+  Proof   | loss:0.47803, accu:0.95179, val_accu:8.8614
+ epoch:[ 80/100]
+  Detector| loss:0.44645, accu:0.84812, val_accu:7.7887
+  Proof   | loss:0.49157, accu:0.95209, val_accu:8.8587
+ epoch:[ 90/100]
+  Detector| loss:0.44555, accu:0.84879, val_accu:7.7989
+  Proof   | loss:0.48391, accu:0.95224, val_accu:8.8614
+ epoch:[100/100]
+  Detector| loss:0.43893, accu:0.85034, val_accu:7.8037
+  Proof   | loss:0.48695, accu:0.95105, val_accu:8.8628

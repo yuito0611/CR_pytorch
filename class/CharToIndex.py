@@ -5,15 +5,15 @@ import torch
 class CharToIndex():
     def __init__(self,chars_file_path):
         ori_chars = np.load(chars_file_path,allow_pickle=True) #バイト形式の文字（半角と全角）
-        han_chars = []
+        zen_chars = []
         for char in ori_chars:
             if isinstance(char,str):
-                han_chars.append(mojimoji.zen_to_han(char.tolist()).encode())
+                zen_chars.append(mojimoji.han_to_zen(char.tolist()).encode())
             if isinstance(char,bytes):
-                han_chars.append(mojimoji.zen_to_han(char.decode()).encode())
-        han_chars = np.unique(han_chars) #半角で統一
+                zen_chars.append(mojimoji.han_to_zen(char.decode()).encode())
+        zen_chars = np.unique(zen_chars) #全角で統一
         self.table = {b'<UNK>':0}
-        self.table.update({char:idx+1 for idx,char in enumerate(han_chars)}) #対応表
+        self.table.update({char:idx+1 for idx,char in enumerate(zen_chars)}) #対応表
         self.char_num = len(self.table.items())
 
     def __str__(self):
@@ -50,12 +50,12 @@ class CharToIndex():
             return '<UNK>'
 
 
-    #文字から対応するインデックスを取得(半角に統一)
+    #文字から対応するインデックスを取得(全角に統一)
     def get_index(self,char):
         if isinstance(char,str):
-            char = mojimoji.zen_to_han(char).encode()
+            char = mojimoji.han_to_zen(char).encode()
         if isinstance(char,bytes):
-            char = mojimoji.zen_to_han(char.decode()).encode()
+            char = mojimoji.han_to_zen(char.decode()).encode()
         if isinstance(char,bytes)==False:
             print("\033[31m"+f"ERROR: arg must be <class 'str'> or <class 'bytes'>\nbut input arg is {char}"+" \033[0m")
             return None
@@ -65,6 +65,7 @@ class CharToIndex():
         except KeyError:
             print("\033[31m"+"ERROR: No such char -->"+f" \033[0m{char}")
             return 0
+
 
     def decoded_table(self):
         for i,item in enumerate(self.table.keys()):

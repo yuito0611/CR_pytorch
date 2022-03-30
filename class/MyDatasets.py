@@ -4,7 +4,6 @@ from CharToIndex import CharToIndex
 import torch
 import numpy as np
 
-
 # Xが(10,)、Yが(1,)の文字からなるデータを半角統一してインデックス化して
 # Xが(9,10)、Yが(1,)からなるデータセットにするクラス
 class BaseDataset_set9(torch.utils.data.Dataset):
@@ -17,7 +16,6 @@ class BaseDataset_set9(torch.utils.data.Dataset):
         self.device = device
 
         values = data[0]
-        self.val_idx = []
         for chars in values:
             indexes = []
             for idx in map(self.char2index.get_index,chars):

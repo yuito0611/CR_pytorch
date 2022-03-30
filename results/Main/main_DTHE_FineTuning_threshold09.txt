@@ -1,0 +1,342 @@
+Cross Validation: k=[1/10]
+ epoch:[ 10/100]
+  Detector| loss:0.1261, accu:0.95831, val_accu:0.83899
+  Proof   | loss:0.80475, accu:0.91336, val_accu:0.84375
+ epoch:[ 20/100]
+  Detector| loss:0.073589, accu:0.9763, val_accu:0.85462
+  Proof   | loss:0.46319, accu:0.94468, val_accu:0.84579
+ epoch:[ 30/100]
+  Detector| loss:0.053742, accu:0.98341, val_accu:0.85326
+  Proof   | loss:0.3371, accu:0.95786, val_accu:0.83424
+ epoch:[ 40/100]
+  Detector| loss:0.04282, accu:0.98645, val_accu:0.85462
+  Proof   | loss:0.29508, accu:0.96172, val_accu:0.82677
+ epoch:[ 50/100]
+  Detector| loss:0.034356, accu:0.99104, val_accu:0.84375
+  Proof   | loss:0.26775, accu:0.96416, val_accu:0.83356
+ epoch:[ 60/100]
+  Detector| loss:0.024365, accu:0.99193, val_accu:0.84783
+  Proof   | loss:0.24663, accu:0.96845, val_accu:0.83016
+ epoch:[ 70/100]
+  Detector| loss:0.021015, accu:0.99385, val_accu:0.83492
+  Proof   | loss:0.24871, accu:0.97068, val_accu:0.83696
+ epoch:[ 80/100]
+  Detector| loss:0.021964, accu:0.99385, val_accu:0.8322
+  Proof   | loss:0.21583, accu:0.97119, val_accu:0.83016
+ epoch:[ 90/100]
+  Detector| loss:0.018748, accu:0.99548, val_accu:0.83899
+  Proof   | loss:0.19429, accu:0.97275, val_accu:0.8356
+ epoch:[100/100]
+  Detector| loss:0.023614, accu:0.99467, val_accu:0.83084
+  Proof   | loss:0.18986, accu:0.97645, val_accu:0.83696
+ examin accuracy:0.8451087
+
+Cross Validation: k=[2/10]
+ epoch:[ 10/100]
+  Detector| loss:0.11783, accu:0.95868, val_accu:0.84918
+  Proof   | loss:0.86587, accu:0.91055, val_accu:0.82337
+ epoch:[ 20/100]
+  Detector| loss:0.070278, accu:0.97675, val_accu:0.85258
+  Proof   | loss:0.43766, accu:0.94387, val_accu:0.82677
+ epoch:[ 30/100]
+  Detector| loss:0.052037, accu:0.98423, val_accu:0.8519
+  Proof   | loss:0.37061, accu:0.9515, val_accu:0.83084
+ epoch:[ 40/100]
+  Detector| loss:0.03798, accu:0.98808, val_accu:0.84579
+  Proof   | loss:0.32123, accu:0.96001, val_accu:0.82201
+ epoch:[ 50/100]
+  Detector| loss:0.036515, accu:0.99074, val_accu:0.84035
+  Proof   | loss:0.26872, accu:0.96327, val_accu:0.82541
+ epoch:[ 60/100]
+  Detector| loss:0.033285, accu:0.99297, val_accu:0.83152
+  Proof   | loss:0.23221, accu:0.96912, val_accu:0.8288
+ epoch:[ 70/100]
+  Detector| loss:0.025781, accu:0.99356, val_accu:0.83016
+  Proof   | loss:0.23147, accu:0.97053, val_accu:0.8288
+ epoch:[ 80/100]
+  Detector| loss:0.017477, accu:0.99489, val_accu:0.82812
+  Proof   | loss:0.20083, accu:0.97438, val_accu:0.82677
+ epoch:[ 90/100]
+  Detector| loss:0.022327, accu:0.99511, val_accu:0.83152
+  Proof   | loss:0.18926, accu:0.97719, val_accu:0.82609
+ epoch:[100/100]
+  Detector| loss:0.013006, accu:0.99652, val_accu:0.84375
+  Proof   | loss:0.19566, accu:0.97578, val_accu:0.82948
+ examin accuracy:0.8532609
+
+Cross Validation: k=[3/10]
+ epoch:[ 10/100]
+  Detector| loss:0.13493, accu:0.95475, val_accu:0.87024
+  Proof   | loss:0.88767, accu:0.90721, val_accu:0.8587
+ epoch:[ 20/100]
+  Detector| loss:0.07648, accu:0.9743, val_accu:0.86141
+  Proof   | loss:0.4526, accu:0.94298, val_accu:0.85734
+ epoch:[ 30/100]
+  Detector| loss:0.050988, accu:0.9826, val_accu:0.84918
+  Proof   | loss:0.34183, accu:0.95216, val_accu:0.86073
+ epoch:[ 40/100]
+  Detector| loss:0.035046, accu:0.98815, val_accu:0.8553
+  Proof   | loss:0.32699, accu:0.95668, val_accu:0.8553
+ epoch:[ 50/100]
+  Detector| loss:0.036704, accu:0.98889, val_accu:0.84986
+  Proof   | loss:0.30415, accu:0.96142, val_accu:0.86141
+ epoch:[ 60/100]
+  Detector| loss:0.023896, accu:0.99171, val_accu:0.84579
+  Proof   | loss:0.2693, accu:0.96357, val_accu:0.8587
+ epoch:[ 70/100]
+  Detector| loss:0.021642, accu:0.99237, val_accu:0.84918
+  Proof   | loss:0.22804, accu:0.97045, val_accu:0.86617
+ epoch:[ 80/100]
+  Detector| loss:0.02175, accu:0.9943, val_accu:0.84307
+  Proof   | loss:0.2119, accu:0.97356, val_accu:0.86141
+ epoch:[ 90/100]
+  Detector| loss:0.018635, accu:0.99467, val_accu:0.85598
+  Proof   | loss:0.22998, accu:0.97179, val_accu:0.85802
+ epoch:[100/100]
+  Detector| loss:0.020941, accu:0.99556, val_accu:0.84035
+  Proof   | loss:0.22212, accu:0.97401, val_accu:0.86345
+ examin accuracy:0.892663
+
+Cross Validation: k=[4/10]
+ epoch:[ 10/100]
+  Detector| loss:0.12951, accu:0.95475, val_accu:0.87636
+  Proof   | loss:0.84137, accu:0.90914, val_accu:0.81726
+ epoch:[ 20/100]
+  Detector| loss:0.069035, accu:0.97749, val_accu:0.84307
+  Proof   | loss:0.46961, accu:0.94046, val_accu:0.80435
+ epoch:[ 30/100]
+  Detector| loss:0.052658, accu:0.98201, val_accu:0.84103
+  Proof   | loss:0.3519, accu:0.95468, val_accu:0.81454
+ epoch:[ 40/100]
+  Detector| loss:0.045765, accu:0.98682, val_accu:0.86549
+  Proof   | loss:0.30704, accu:0.95809, val_accu:0.80367
+ epoch:[ 50/100]
+  Detector| loss:0.038899, accu:0.98815, val_accu:0.82948
+  Proof   | loss:0.2783, accu:0.96401, val_accu:0.8091
+ epoch:[ 60/100]
+  Detector| loss:0.030108, accu:0.99067, val_accu:0.83899
+  Proof   | loss:0.25314, accu:0.96749, val_accu:0.80978
+ epoch:[ 70/100]
+  Detector| loss:0.028946, accu:0.99141, val_accu:0.84511
+  Proof   | loss:0.2298, accu:0.96912, val_accu:0.80842
+ epoch:[ 80/100]
+  Detector| loss:0.026993, accu:0.99245, val_accu:0.83628
+  Proof   | loss:0.22259, accu:0.97253, val_accu:0.80503
+ epoch:[ 90/100]
+  Detector| loss:0.020581, accu:0.99408, val_accu:0.82812
+  Proof   | loss:0.19872, accu:0.97393, val_accu:0.81182
+ epoch:[100/100]
+  Detector| loss:0.019608, accu:0.99452, val_accu:0.8288
+  Proof   | loss:0.19829, accu:0.97519, val_accu:0.80774
+ examin accuracy:0.8559783
+
+Cross Validation: k=[5/10]
+ epoch:[ 10/100]
+  Detector| loss:0.131, accu:0.95957, val_accu:0.79416
+  Proof   | loss:0.82753, accu:0.91017, val_accu:0.78736
+ epoch:[ 20/100]
+  Detector| loss:0.074142, accu:0.97653, val_accu:0.79688
+  Proof   | loss:0.48107, accu:0.94217, val_accu:0.80503
+ epoch:[ 30/100]
+  Detector| loss:0.054058, accu:0.98326, val_accu:0.80163
+  Proof   | loss:0.35398, accu:0.95564, val_accu:0.80503
+ epoch:[ 40/100]
+  Detector| loss:0.03838, accu:0.98756, val_accu:0.78804
+  Proof   | loss:0.28697, accu:0.96305, val_accu:0.80571
+ epoch:[ 50/100]
+  Detector| loss:0.031365, accu:0.99045, val_accu:0.79144
+  Proof   | loss:0.27554, accu:0.96497, val_accu:0.80299
+ epoch:[ 60/100]
+  Detector| loss:0.028917, accu:0.99222, val_accu:0.78057
+  Proof   | loss:0.25005, accu:0.97008, val_accu:0.80163
+ epoch:[ 70/100]
+  Detector| loss:0.022678, accu:0.99334, val_accu:0.79008
+  Proof   | loss:0.21421, accu:0.97156, val_accu:0.80027
+ epoch:[ 80/100]
+  Detector| loss:0.024445, accu:0.99378, val_accu:0.78533
+  Proof   | loss:0.21268, accu:0.97319, val_accu:0.79688
+ epoch:[ 90/100]
+  Detector| loss:0.017454, accu:0.994, val_accu:0.77174
+  Proof   | loss:0.2253, accu:0.9749, val_accu:0.81386
+ epoch:[100/100]
+  Detector| loss:0.013726, accu:0.99585, val_accu:0.77582
+  Proof   | loss:0.19003, accu:0.9763, val_accu:0.80639
+ examin accuracy:0.8213315
+
+Cross Validation: k=[6/10]
+ epoch:[ 10/100]
+  Detector| loss:0.12933, accu:0.9586, val_accu:0.75883
+  Proof   | loss:0.7444, accu:0.91706, val_accu:0.73098
+ epoch:[ 20/100]
+  Detector| loss:0.075138, accu:0.97564, val_accu:0.76223
+  Proof   | loss:0.41796, accu:0.94528, val_accu:0.7269
+ epoch:[ 30/100]
+  Detector| loss:0.046499, accu:0.98475, val_accu:0.75543
+  Proof   | loss:0.33852, accu:0.95675, val_accu:0.72894
+ epoch:[ 40/100]
+  Detector| loss:0.048151, accu:0.98763, val_accu:0.76291
+  Proof   | loss:0.29245, accu:0.96216, val_accu:0.73234
+ epoch:[ 50/100]
+  Detector| loss:0.030553, accu:0.99045, val_accu:0.76495
+  Proof   | loss:0.24389, accu:0.96794, val_accu:0.73981
+ epoch:[ 60/100]
+  Detector| loss:0.025634, accu:0.9923, val_accu:0.75747
+  Proof   | loss:0.25188, accu:0.96882, val_accu:0.73302
+ epoch:[ 70/100]
+  Detector| loss:0.025649, accu:0.99222, val_accu:0.74932
+  Proof   | loss:0.20955, accu:0.97297, val_accu:0.73573
+ epoch:[ 80/100]
+  Detector| loss:0.016727, accu:0.99445, val_accu:0.75
+  Proof   | loss:0.20582, accu:0.97253, val_accu:0.72826
+ epoch:[ 90/100]
+  Detector| loss:0.015603, accu:0.99422, val_accu:0.75068
+  Proof   | loss:0.205, accu:0.97393, val_accu:0.72894
+ epoch:[100/100]
+  Detector| loss:0.01409, accu:0.99496, val_accu:0.76359
+  Proof   | loss:0.19924, accu:0.97541, val_accu:0.72826
+ examin accuracy:0.7540761
+
+Cross Validation: k=[7/10]
+ epoch:[ 10/100]
+  Detector| loss:0.13354, accu:0.95638, val_accu:0.92731
+  Proof   | loss:0.91184, accu:0.90107, val_accu:0.89742
+ epoch:[ 20/100]
+  Detector| loss:0.066452, accu:0.97638, val_accu:0.91916
+  Proof   | loss:0.47455, accu:0.93928, val_accu:0.89946
+ epoch:[ 30/100]
+  Detector| loss:0.045108, accu:0.98549, val_accu:0.91101
+  Proof   | loss:0.37444, accu:0.95001, val_accu:0.90353
+ epoch:[ 40/100]
+  Detector| loss:0.041429, accu:0.98711, val_accu:0.89266
+  Proof   | loss:0.31036, accu:0.95957, val_accu:0.90014
+ epoch:[ 50/100]
+  Detector| loss:0.02967, accu:0.98963, val_accu:0.88995
+  Proof   | loss:0.31856, accu:0.9606, val_accu:0.89334
+ epoch:[ 60/100]
+  Detector| loss:0.025547, accu:0.9923, val_accu:0.90625
+  Proof   | loss:0.29077, accu:0.96238, val_accu:0.90082
+ epoch:[ 70/100]
+  Detector| loss:0.020531, accu:0.994, val_accu:0.90014
+  Proof   | loss:0.23418, accu:0.96905, val_accu:0.89538
+ epoch:[ 80/100]
+  Detector| loss:0.017102, accu:0.99482, val_accu:0.88995
+  Proof   | loss:0.22768, accu:0.97134, val_accu:0.90149
+ epoch:[ 90/100]
+  Detector| loss:0.01819, accu:0.99563, val_accu:0.89334
+  Proof   | loss:0.22961, accu:0.97245, val_accu:0.90217
+ epoch:[100/100]
+  Detector| loss:0.012532, accu:0.99533, val_accu:0.8947
+  Proof   | loss:0.18057, accu:0.97527, val_accu:0.89742
+ examin accuracy:0.921875
+
+Cross Validation: k=[8/10]
+ epoch:[ 10/100]
+  Detector| loss:0.1338, accu:0.95401, val_accu:0.92255
+  Proof   | loss:0.8694, accu:0.90255, val_accu:0.92459
+ epoch:[ 20/100]
+  Detector| loss:0.074285, accu:0.97408, val_accu:0.90557
+  Proof   | loss:0.51175, accu:0.93424, val_accu:0.91576
+ epoch:[ 30/100]
+  Detector| loss:0.061342, accu:0.98089, val_accu:0.90625
+  Proof   | loss:0.409, accu:0.94809, val_accu:0.9212
+ epoch:[ 40/100]
+  Detector| loss:0.041258, accu:0.98689, val_accu:0.90965
+  Proof   | loss:0.3185, accu:0.95557, val_accu:0.91372
+ epoch:[ 50/100]
+  Detector| loss:0.034021, accu:0.99015, val_accu:0.91033
+  Proof   | loss:0.30551, accu:0.96105, val_accu:0.92391
+ epoch:[ 60/100]
+  Detector| loss:0.025687, accu:0.99148, val_accu:0.91712
+  Proof   | loss:0.29909, accu:0.96283, val_accu:0.92323
+ epoch:[ 70/100]
+  Detector| loss:0.025789, accu:0.99274, val_accu:0.91168
+  Proof   | loss:0.26942, accu:0.96423, val_accu:0.92391
+ epoch:[ 80/100]
+  Detector| loss:0.024798, accu:0.99408, val_accu:0.89606
+  Proof   | loss:0.23065, accu:0.96993, val_accu:0.92323
+ epoch:[ 90/100]
+  Detector| loss:0.017978, accu:0.99548, val_accu:0.91168
+  Proof   | loss:0.19386, accu:0.97342, val_accu:0.91304
+ epoch:[100/100]
+  Detector| loss:0.015893, accu:0.99541, val_accu:0.89742
+  Proof   | loss:0.22824, accu:0.97156, val_accu:0.9212
+ examin accuracy:0.9286685
+
+Cross Validation: k=[9/10]
+ epoch:[ 10/100]
+  Detector| loss:0.13077, accu:0.95579, val_accu:0.88859
+  Proof   | loss:0.85213, accu:0.9084, val_accu:0.90693
+ epoch:[ 20/100]
+  Detector| loss:0.067713, accu:0.97734, val_accu:0.90149
+  Proof   | loss:0.45583, accu:0.94165, val_accu:0.89606
+ epoch:[ 30/100]
+  Detector| loss:0.045358, accu:0.98438, val_accu:0.88927
+  Proof   | loss:0.37033, accu:0.95157, val_accu:0.90149
+ epoch:[ 40/100]
+  Detector| loss:0.036363, accu:0.98778, val_accu:0.89606
+  Proof   | loss:0.31188, accu:0.95986, val_accu:0.89606
+ epoch:[ 50/100]
+  Detector| loss:0.029539, accu:0.99178, val_accu:0.89198
+  Proof   | loss:0.26333, accu:0.9652, val_accu:0.89674
+ epoch:[ 60/100]
+  Detector| loss:0.019779, accu:0.99326, val_accu:0.88247
+  Proof   | loss:0.24376, accu:0.96638, val_accu:0.89946
+ epoch:[ 70/100]
+  Detector| loss:0.017874, accu:0.994, val_accu:0.87772
+  Proof   | loss:0.25208, accu:0.96764, val_accu:0.90761
+ epoch:[ 80/100]
+  Detector| loss:0.017373, accu:0.99526, val_accu:0.88315
+  Proof   | loss:0.22381, accu:0.97119, val_accu:0.89742
+ epoch:[ 90/100]
+  Detector| loss:0.016173, accu:0.99548, val_accu:0.88451
+  Proof   | loss:0.22555, accu:0.97105, val_accu:0.90082
+ epoch:[100/100]
+  Detector| loss:0.011035, accu:0.99711, val_accu:0.87228
+  Proof   | loss:0.20348, accu:0.97379, val_accu:0.90557
+ examin accuracy:0.9164402
+
+Cross Validation: k=[10/10]
+ epoch:[ 10/100]
+  Detector| loss:0.13013, accu:0.95387, val_accu:0.9212
+  Proof   | loss:0.90725, accu:0.90158, val_accu:0.90149
+ epoch:[ 20/100]
+  Detector| loss:0.073044, accu:0.97445, val_accu:0.91848
+  Proof   | loss:0.47117, accu:0.93928, val_accu:0.91372
+ epoch:[ 30/100]
+  Detector| loss:0.045597, accu:0.98304, val_accu:0.91304
+  Proof   | loss:0.36514, accu:0.94809, val_accu:0.89606
+ epoch:[ 40/100]
+  Detector| loss:0.038729, accu:0.98741, val_accu:0.90693
+  Proof   | loss:0.29836, accu:0.95868, val_accu:0.90897
+ epoch:[ 50/100]
+  Detector| loss:0.031103, accu:0.98978, val_accu:0.91033
+  Proof   | loss:0.27154, accu:0.96327, val_accu:0.91033
+ epoch:[ 60/100]
+  Detector| loss:0.023848, accu:0.99208, val_accu:0.91168
+  Proof   | loss:0.27738, accu:0.96416, val_accu:0.9144
+ epoch:[ 70/100]
+  Detector| loss:0.024845, accu:0.99252, val_accu:0.91372
+  Proof   | loss:0.23556, accu:0.96712, val_accu:0.90829
+ epoch:[ 80/100]
+  Detector| loss:0.014778, accu:0.99452, val_accu:0.91033
+  Proof   | loss:0.23203, accu:0.96912, val_accu:0.91101
+ epoch:[ 90/100]
+  Detector| loss:0.016677, accu:0.99496, val_accu:0.90897
+  Proof   | loss:0.23399, accu:0.97164, val_accu:0.91304
+ epoch:[100/100]
+  Detector| loss:0.012819, accu:0.996, val_accu:0.89334
+  Proof   | loss:0.20992, accu:0.97238, val_accu:0.9212
+ examin accuracy:0.9408967
+
+=================================================
+
+Detector 
+acc: [0.8308423913043478, 0.84375, 0.8403532608695652, 0.8288043478260869, 0.7758152173913043, 0.7635869565217391, 0.8947010869565217, 0.8974184782608695, 0.8722826086956522, 0.8933423913043478]
+loss: [0.02361419734983321, 0.013006451252480554, 0.020940774923333474, 0.019608072644297075, 0.01372629059102253, 0.014089648343347368, 0.012532352175480453, 0.015893237347634943, 0.01103473299681593, 0.012819388761572938]
+acc average: 0.8440896739130436
+Proof 
+acc: [0.8369565217391305, 0.829483695652174, 0.8634510869565217, 0.8077445652173914, 0.8063858695652174, 0.7282608695652174, 0.8974184782608695, 0.9211956521739131, 0.9055706521739131, 0.9211956521739131]
+loss: [0.1898607909941411, 0.1956552522511506, 0.22212002528571273, 0.19829033247116506, 0.19003408743519337, 0.19924154698520866, 0.18056801660984667, 0.22824279346831775, 0.20347776866461245, 0.2099182667752369]
+Examin 
+acc: [0.845108695652174, 0.8532608695652174, 0.8926630434782609, 0.8559782608695652, 0.8213315217391305, 0.7540760869565217, 0.921875, 0.9286684782608695, 0.9164402173913043, 0.9408967391304348]
+accu average: 0.873029891304348
